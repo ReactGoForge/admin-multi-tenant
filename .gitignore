@@ -1,0 +1,6 @@
+.DS_Store
+/apps/service/.env
+/apps/service/logs/
+/apps/web/.env.local
+/apps/web/.env.*.local
+/deploy/dist/

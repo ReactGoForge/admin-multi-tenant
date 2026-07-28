@@ -1,0 +1,50 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.stylelint": "always",
+    "source.organizeImports": "never"
+  },
+  "editor.formatOnSave": false,
+  "eslint.rules.customizations": [
+    {
+      "fixable": true,
+      "rule": "style/*",
+      "severity": "off"
+    },
+    {
+      "fixable": true,
+      "rule": "format/*",
+      "severity": "off"
+    },
+    {
+      "fixable": true,
+      "rule": "*-order",
+      "severity": "off"
+    }
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "jsonc",
+    "css",
+    "scss",
+    "html"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "changeProcessCWD": true,
+      "directory": "apps/web"
+    },
+    {
+      "changeProcessCWD": true,
+      "directory": "apps/miniapp"
+    }
+  ],
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ]
+}

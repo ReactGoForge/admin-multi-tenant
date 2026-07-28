@@ -1,0 +1,53 @@
+name: admin-multi-tenant
+
+services:
+  service:
+    image: "admin-multi-tenant-service-runtime:1"
+    restart: unless-stopped
+    command:
+      - /releases/current/server
+    environment:
+      APP_ENV: "${APP_ENV:?APP_ENV is required}"
+      MYSQL_HOST: "${MYSQL_HOST:?MYSQL_HOST is required}"
+      MYSQL_PORT: "${MYSQL_PORT:?MYSQL_PORT is required}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE:?MYSQL_DATABASE is required}"
+      MYSQL_USER: "${MYSQL_USER:?MYSQL_USER is required}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}"
+      REDIS_HOST: "${REDIS_HOST:?REDIS_HOST is required}"
+      REDIS_PORT: "${REDIS_PORT:?REDIS_PORT is required}"
+      REDIS_PASSWORD: "${REDIS_PASSWORD:?REDIS_PASSWORD is required}"
+      JWT_SECRET: "${JWT_SECRET:?JWT_SECRET is required}"
+      CAPTCHA_ENABLED: "${CAPTCHA_ENABLED:?CAPTCHA_ENABLED is required}"
+      LOGIN_RATE_LIMIT_ENABLED: "${LOGIN_RATE_LIMIT_ENABLED:?LOGIN_RATE_LIMIT_ENABLED is required}"
+      TRUSTED_PROXIES: "${TRUSTED_PROXIES:-}"
+      SYSTEM_REQUEST_LOG_MODE: "${SYSTEM_REQUEST_LOG_MODE:?SYSTEM_REQUEST_LOG_MODE is required}"
+      SYSTEM_EVENT_DB_ENABLED: "${SYSTEM_EVENT_DB_ENABLED:?SYSTEM_EVENT_DB_ENABLED is required}"
+      SYSTEM_LOG_RETENTION_DAYS: "${SYSTEM_LOG_RETENTION_DAYS:?SYSTEM_LOG_RETENTION_DAYS is required}"
+      WECHAT_MINIAPP_APP_SECRET: "${WECHAT_MINIAPP_APP_SECRET:-}"
+      WECHAT_MINIAPP_CODE_ENV_VERSION: "${WECHAT_MINIAPP_CODE_ENV_VERSION:?WECHAT_MINIAPP_CODE_ENV_VERSION is required}"
+      MINIO_ENDPOINT: "${MINIO_ENDPOINT:?MINIO_ENDPOINT is required}"
+      MINIO_PUBLIC_ENDPOINT: "${MINIO_PUBLIC_ENDPOINT:?MINIO_PUBLIC_ENDPOINT is required}"
+      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY:?MINIO_ACCESS_KEY is required}"
+      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY:?MINIO_SECRET_KEY is required}"
+      MINIO_BUCKET: "${MINIO_BUCKET:?MINIO_BUCKET is required}"
+      MINIO_USE_SSL: "${MINIO_USE_SSL:?MINIO_USE_SSL is required}"
+      MINIO_PUBLIC_USE_SSL: "${MINIO_PUBLIC_USE_SSL:?MINIO_PUBLIC_USE_SSL is required}"
+    ports:
+      - "127.0.0.1:18080:8080"
+    volumes:
+      - "${SERVICE_RELEASE_ROOT:-/opt/reactgoforge/admin-multi-tenant/shared/service-releases}:/releases:ro"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -q -O - http://127.0.0.1:8080/readyz | grep -q '"code":0'
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - internal
+
+networks:
+  internal:
+    name: admin-multi-tenant-internal
+    external: true

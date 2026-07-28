@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+:root {
+  --ys-text: #172033;
+  --ys-muted: #697386;
+  --ys-subtle: #98a2b3;
+  --ys-line: #e1e8f0;
+  --ys-soft-line: #edf1f6;
+  --ys-bg: #f4f7fb;
+  --ys-panel: #fff;
+  --ys-panel-soft: #f7f9fc;
+  --ys-primary: #3b6ff5;
+  --ys-primary-dark: #244fd3;
+  --ys-primary-soft: #edf3ff;
+  --ys-cyan: #06a7c7;
+  --ys-cyan-soft: #e9f9fc;
+  --ys-green: #10b981;
+  --ys-green-soft: #eafaf4;
+  --ys-amber: #f59e0b;
+  --ys-amber-soft: #fff7e6;
+  --ys-red: #ef4444;
+  --ys-shadow: 0 16px 48px rgb(31 45 72 / 8%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  color: var(--ys-text);
+  background: var(--ys-bg);
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: light;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

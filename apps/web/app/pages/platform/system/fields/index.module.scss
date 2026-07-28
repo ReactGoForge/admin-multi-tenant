@@ -1,0 +1,171 @@
+.dictionaryLayout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.panelCard {
+  min-width: 0;
+  height: 100%;
+}
+
+.typeList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.typeListButton {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 58px;
+  padding: 9px 11px;
+  color: var(--ys-text);
+  text-align: left;
+  touch-action: manipulation;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.typeListButton:hover {
+  background: #f5f8fd;
+  border-color: var(--ys-soft-line);
+}
+
+.typeListButton:active {
+  background: #e8efff;
+}
+
+.typeListButton:focus-visible {
+  outline: 3px solid rgb(59 111 245 / 16%);
+  outline-offset: 1px;
+  border-color: var(--ys-primary);
+}
+
+.typeListButton.isSelected {
+  color: var(--ys-primary-dark);
+  background: var(--ys-primary-soft);
+  border-color: #cfdcff;
+}
+
+.typeListText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.typeListName,
+.typeListCode,
+.detailName,
+.detailCode,
+.stableValue {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typeListName {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: inherit;
+}
+
+.typeListCode,
+.detailCode,
+.stableValue {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+
+.typeListCode {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ys-muted);
+}
+
+.typeListMeta {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.statusTag {
+  margin-inline-end: 0;
+}
+
+.itemCount,
+.detailCount {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ys-subtle);
+  white-space: nowrap;
+}
+
+.detailTitle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.detailName {
+  min-width: 0;
+}
+
+.detailMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  min-width: 0;
+  margin-bottom: 16px;
+}
+
+.detailCode {
+  max-width: 100%;
+  padding: 2px 7px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #475467;
+  background: #f7f9fc;
+  border: 1px solid var(--ys-soft-line);
+  border-radius: 4px;
+}
+
+.remark {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--ys-muted);
+  overflow-wrap: anywhere;
+}
+
+.stableValue {
+  display: block;
+  max-width: 100%;
+  font-size: 12px;
+  color: #475467;
+}
+
+.numericCell {
+  font-variant-numeric: tabular-nums;
+}

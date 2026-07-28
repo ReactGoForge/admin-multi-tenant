@@ -1,0 +1,404 @@
+openapi: 3.1.0
+info:
+  title: 云上 API
+  version: 0.1.0
+  description: |
+    云上三端公共接口契约。当前先覆盖统一响应、认证、健康检查、
+    平台用户列表和小程序当前会话；其他既有接口在后续修改时逐步纳入。
+servers:
+  - url: /
+tags:
+  - name: Health
+  - name: AdminAuth
+  - name: PlatformUsers
+  - name: MiniappAuth
+paths:
+  /ping:
+    get:
+      tags: [Health]
+      operationId: ping
+      responses:
+        "200":
+          description: 服务可访问
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+  /healthz:
+    get:
+      tags: [Health]
+      operationId: healthz
+      responses:
+        "200":
+          description: 进程存活
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /readyz:
+    get:
+      tags: [Health]
+      operationId: readyz
+      responses:
+        "200":
+          description: 必要依赖可用
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadyResponse"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable"
+  /api/admin/auth/login:
+    post:
+      tags: [AdminAuth]
+      operationId: loginAdmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminLoginRequest"
+      responses:
+        "200":
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminLoginResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+  /api/admin/platform/users:
+    get:
+      tags: [PlatformUsers]
+      operationId: listPlatformUsers
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+        - name: nickname
+          in: query
+          schema:
+            type: string
+        - name: phone
+          in: query
+          schema:
+            type: string
+        - name: tenantId
+          in: query
+          schema:
+            $ref: "#/components/schemas/Identifier"
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/EntityStatus"
+      responses:
+        "200":
+          description: 平台用户分页结果
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlatformUserListResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /api/miniapp/auth/login:
+    post:
+      tags: [MiniappAuth]
+      operationId: loginMiniapp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MiniappLoginRequest"
+      responses:
+        "200":
+          description: 小程序登录成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MiniappLoginResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+  /api/miniapp/me:
+    get:
+      tags: [MiniappAuth]
+      operationId: getMiniappCurrentSession
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 当前小程序用户与租户
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MiniappCurrentSessionResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+  responses:
+    BadRequest:
+      description: 请求参数错误
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Unauthorized:
+      description: 登录状态无效
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Forbidden:
+      description: 权限或租户状态不允许访问
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ServiceUnavailable:
+      description: 必要依赖暂不可用
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    Identifier:
+      type: string
+      pattern: "^[1-9][0-9]*$"
+    EntityStatus:
+      type: string
+      enum: [enabled, disabled]
+    ErrorResponse:
+      type: object
+      required: [code, message, data]
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: "null"
+    PingData:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          const: pong
+    HealthData:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          const: ok
+    ReadyData:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          const: ready
+    PingResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/PingData"
+    HealthResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/HealthData"
+    ReadyResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/ReadyData"
+    SuccessResponse:
+      type: object
+      required: [code, message, data]
+      properties:
+        code:
+          type: integer
+          const: 0
+        message:
+          type: string
+          const: 成功
+        data: {}
+    AdminLoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        captchaId:
+          type: string
+        captchaCode:
+          type: string
+    AdminLoginData:
+      type: object
+      required: [accessToken, expiresAt]
+      properties:
+        accessToken:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+    AdminLoginResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/AdminLoginData"
+    PlatformUser:
+      type: object
+      required: [id, nickname, avatarUrl, phone, status, tenantCount, createdAt]
+      properties:
+        id:
+          $ref: "#/components/schemas/Identifier"
+        nickname:
+          type: [string, "null"]
+        avatarUrl:
+          type: [string, "null"]
+        phone:
+          type: [string, "null"]
+        status:
+          $ref: "#/components/schemas/EntityStatus"
+        tenantCount:
+          type: integer
+          minimum: 0
+        createdAt:
+          type: string
+    PlatformUserPage:
+      type: object
+      required: [items, page, pageSize, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlatformUser"
+        page:
+          type: integer
+          minimum: 1
+        pageSize:
+          type: integer
+          minimum: 1
+          maximum: 100
+        total:
+          type: integer
+          minimum: 0
+    PlatformUserListResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/PlatformUserPage"
+    MiniappUser:
+      type: object
+      required: [id, phone, nickname, avatarUrl, status]
+      properties:
+        id:
+          $ref: "#/components/schemas/Identifier"
+        phone:
+          type: [string, "null"]
+        nickname:
+          type: [string, "null"]
+        avatarUrl:
+          type: [string, "null"]
+        status:
+          $ref: "#/components/schemas/EntityStatus"
+    MiniappTenant:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          $ref: "#/components/schemas/Identifier"
+        name:
+          type: string
+    MiniappSession:
+      type: object
+      required: [accessToken, expiresAt, user, tenant]
+      properties:
+        accessToken:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        user:
+          $ref: "#/components/schemas/MiniappUser"
+        tenant:
+          $ref: "#/components/schemas/MiniappTenant"
+    MiniappCurrentSession:
+      type: object
+      required: [user, tenant]
+      properties:
+        user:
+          $ref: "#/components/schemas/MiniappUser"
+        tenant:
+          $ref: "#/components/schemas/MiniappTenant"
+    MiniappLoginRequest:
+      type: object
+      required: [code, scene]
+      properties:
+        code:
+          type: string
+        scene:
+          $ref: "#/components/schemas/Identifier"
+        phoneCode:
+          type: string
+    MiniappLoginResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/MiniappSession"
+    MiniappCurrentSessionResponse:
+      allOf:
+        - $ref: "#/components/schemas/SuccessResponse"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/MiniappCurrentSession"

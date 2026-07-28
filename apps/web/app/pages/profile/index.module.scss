@@ -1,0 +1,44 @@
+.profileCard {
+  width: 100%;
+}
+
+.profileOverview {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.basicProfileForm {
+  flex: 1;
+  min-width: 0;
+}
+
+.profileFieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 18px;
+}
+
+.passwordCard {
+  width: 100%;
+}
+
+.passwordForm {
+  max-width: 560px;
+}
+
+@media (width <= 640px) {
+  .profileOverview {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .basicProfileForm {
+    width: 100%;
+  }
+
+  .profileFieldGrid {
+    grid-template-columns: 1fr;
+  }
+}

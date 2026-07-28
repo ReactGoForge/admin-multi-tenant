@@ -1,0 +1,212 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.bulkActions {
+  margin-left: auto;
+}
+
+.library {
+  display: flex;
+  height: min(500px, 100vh - 260px);
+  min-height: 360px;
+}
+
+.categoryPanel {
+  flex: 0 0 180px;
+  width: 180px;
+  padding: 8px 16px 8px 0;
+  border-right: 1px solid #e5e7eb;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 28px;
+  margin: 0 8px 10px;
+}
+
+.categoryPanel :global(.ant-tree) {
+  background: transparent;
+}
+
+.categoryPanel :global(.ant-tree-node-content-wrapper) {
+  min-width: 0;
+}
+
+.imagePanel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 8px 0 0 20px;
+}
+
+.imageViewport {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.imageViewport :global(.ant-spin-nested-loading),
+.imageViewport :global(.ant-spin-container) {
+  min-height: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 128px);
+  gap: 12px;
+  align-content: start;
+  align-items: start;
+  min-height: 100%;
+  padding: 2px;
+}
+
+.asset {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.assetSelectable {
+  cursor: pointer;
+}
+
+.assetSelectable:hover {
+  border-color: #91caff;
+  transform: translateY(-1px);
+}
+
+.assetSelectable:focus-within {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgb(22 119 255 / 14%);
+}
+
+.assetSelected {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgb(22 119 255 / 12%);
+}
+
+.assetSelect {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  cursor: inherit;
+  background: transparent;
+  border: 0;
+}
+
+.assetSelect:focus {
+  outline: none;
+}
+
+.assetPreview {
+  display: block;
+  width: 100%;
+  background: #f8fafc;
+}
+
+.assetPreview :global(.ant-image) {
+  display: block;
+  width: 100%;
+}
+
+.assetImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.previewButton {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  color: #64748b;
+  background: rgb(255 255 255 / 90%);
+}
+
+.selectedIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  font-size: 18px;
+  color: #1677ff;
+  filter: drop-shadow(0 1px 2px rgb(255 255 255 / 90%));
+}
+
+.assetBody {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 10px 40px 10px 10px;
+}
+
+.assetInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.assetName {
+  display: block;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.assetMeta {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.assetMore {
+  position: absolute;
+  right: 6px;
+  bottom: 7px;
+  z-index: 2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
+.treeNodeTitle {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.treeNodeName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,357 @@
+.appShell {
+  min-height: 100vh;
+  background: var(--ys-bg);
+}
+
+.appMainLayout {
+  min-width: 0;
+  background: var(--ys-bg);
+}
+
+.appSider {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--ys-panel);
+  border-right: 1px solid var(--ys-soft-line);
+  box-shadow: none;
+}
+
+.appSider :global(.ant-layout-sider-children) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.appSiderBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  cursor: default;
+  background: rgb(17 24 39 / 34%);
+  border: 0;
+}
+
+.appBrand {
+  display: flex;
+  flex: 0 0 56px;
+  gap: 10px;
+  align-items: center;
+  height: 56px;
+  padding: 0 15px;
+  border-bottom: 1px solid var(--ys-soft-line);
+}
+
+.appBrand.isCollapsed {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.appBrand.isCollapsed .appBrandCopy {
+  display: none;
+}
+
+.appBrandMark {
+  display: grid;
+  flex: 0 0 38px;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ys-primary);
+  background: #f3f6ff;
+  border: 1px solid #cfdcff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgb(59 111 245 / 12%);
+}
+
+.appBrandMark.hasImage {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.appBrandMark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.appBrandCopy {
+  transition: opacity 0.16s ease;
+}
+
+.appBrandTitle {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--ys-text);
+}
+
+.appBrandSubtitle {
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--ys-muted);
+}
+
+.appMenu {
+  flex: 1;
+  padding: 8px 4px 16px;
+  overflow: hidden auto;
+  background: transparent;
+}
+
+.appMenu :global(.ant-menu-submenu-title) {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.appMenu :global(.ant-menu-submenu-title):hover {
+  color: var(--ys-primary-dark);
+}
+
+.appMenu :global(.ant-menu-submenu-open > .ant-menu-submenu-title) {
+  font-weight: 600;
+  color: var(--ys-text);
+}
+
+.appMenu :global(.ant-menu-sub.ant-menu-inline) {
+  background: transparent;
+}
+
+.appMenu :global(.ant-menu-item),
+.appMenu :global(.ant-menu-submenu-title) {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.appMenu :global(.ant-menu-item .anticon),
+.appMenu :global(.ant-menu-submenu-title .anticon) {
+  display: inline-flex;
+  flex: 0 0 18px;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.appMenu :global(.ant-menu-title-content) {
+  line-height: 22px;
+}
+
+.appMenu :global(.ant-menu-item-selected) {
+  font-weight: 600;
+}
+
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 20px;
+  background: rgb(255 255 255 / 96%);
+  border-bottom: 1px solid var(--ys-soft-line);
+  backdrop-filter: blur(12px);
+}
+
+.appHeaderMain,
+.appHeaderActions {
+  display: flex;
+  align-items: center;
+}
+
+.appHeaderMain {
+  gap: 12px;
+  min-width: 0;
+}
+
+.appHeaderActions {
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.appIconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #475467;
+}
+
+.appIconButton:hover {
+  color: var(--ys-primary-dark);
+  background: var(--ys-primary-soft);
+}
+
+.appHeaderPage {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.appHeaderKicker {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ys-subtle);
+}
+
+.appHeaderKicker::after {
+  margin-left: 8px;
+  color: #c0c8d4;
+  content: '/';
+}
+
+.appHeaderTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--ys-text);
+  white-space: nowrap;
+}
+
+.userTrigger {
+  height: 44px;
+  padding: 4px 6px;
+  margin-left: 4px;
+}
+
+.userTrigger:hover {
+  background: #f5f7fb;
+}
+
+.userAvatar {
+  color: #fff;
+  background: var(--ys-primary);
+  border: 0;
+}
+
+.userChevron {
+  font-size: 10px;
+  color: var(--ys-subtle);
+}
+
+.workspaceTabs {
+  position: sticky;
+  top: 56px;
+  z-index: 20;
+  height: 40px;
+  background: #fff;
+  border-bottom: 1px solid var(--ys-soft-line);
+}
+
+.workspaceTabs :global(.ant-tabs) {
+  height: 40px;
+}
+
+.workspaceTabs :global(.ant-tabs-nav) {
+  height: 40px;
+  padding-inline: 8px;
+  margin: 0;
+}
+
+.workspaceTabs :global(.ant-tabs-nav::before) {
+  display: none;
+}
+
+.workspaceTabs :global(.ant-tabs-nav-add) {
+  display: none;
+}
+
+.workspaceTabs :global(.ant-tabs-tab) {
+  margin: 4px 2px 0 0 !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  border-radius: 6px 6px 0 0 !important;
+}
+
+.workspaceTabs :global(.ant-tabs-tab):hover {
+  background: #f5f7fb !important;
+}
+
+.workspaceTabs :global(.ant-tabs-tab-active) {
+  background: #fff !important;
+  border-color: var(--ys-soft-line) !important;
+  border-bottom-color: #fff !important;
+  box-shadow: 0 -2px 8px rgb(31 45 72 / 4%);
+}
+
+.workspaceTabs :global(.ant-tabs-content-holder) {
+  display: none;
+}
+
+.workspaceTabLabel {
+  display: inline-block;
+  max-width: 136px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.appContent {
+  min-height: calc(100vh - 96px);
+  padding: 20px;
+}
+
+.appWatermark {
+  min-height: calc(100vh - 136px);
+}
+
+@media (width <= 991px) {
+  .appSider {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1000;
+    box-shadow: 16px 0 40px rgb(31 45 72 / 14%);
+    transform: translateX(0);
+    transition:
+      transform 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  .appSider.isMobileHidden {
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-100%);
+  }
+}
+
+@media (width <= 760px) {
+  .appHeader {
+    padding-inline: 12px;
+  }
+
+  .appHeaderMain {
+    gap: 7px;
+  }
+
+  .appHeaderKicker {
+    display: none;
+  }
+
+  .appHeaderTitle {
+    max-width: 120px;
+  }
+
+  .appContent {
+    padding: 14px;
+  }
+}

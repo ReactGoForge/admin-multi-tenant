@@ -1,0 +1,18 @@
+.searchForm :global(.ant-form-item) {
+  margin-bottom: 12px;
+}
+
+.searchForm :global(.ant-form-item-label) {
+  flex: 0 0 80px;
+  width: 80px;
+  padding-bottom: 0;
+}
+
+.searchForm :global(.ant-form-item-label) > label {
+  font-weight: 600;
+  color: var(--ys-text);
+}
+
+.searchForm :global(.ant-row) {
+  row-gap: 8px;
+}

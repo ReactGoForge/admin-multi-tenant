@@ -1,0 +1,6 @@
+@import '@taroify/core/styles/index.css';
+@import '@taroify/core/loading/index.css';
+@import '@taroify/core/button-base/index.css';
+@import '@taroify/core/button/index.css';
+@import 'tailwindcss' source(none);
+@source "../src";
