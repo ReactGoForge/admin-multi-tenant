@@ -48,12 +48,18 @@
 
 ## 开发与环境边界
 
+- 本地开发同时运行 Web 与 Go 服务；Web `/api` 缺省代理到本机
+  `http://127.0.0.1:8080`。
+- Go 由 `make -C apps/service run` 从 `apps/service/.env` 读取开发 MySQL、Redis、
+  MinIO 和 JWT 配置；真实环境文件不提交。
 - DBHub 是可选的本地只读开发工具，通过 SSH 连接测试服务器数据库；配置和凭据保存在
   仓库外，禁止通过 DBHub 执行写入或 DDL。
-- 本地 Web 保持同源 `/api`，Vite 通过 `VITE_API_PROXY_TARGET` 连接指定 API，不启用
+- 本地 Web 保持同源 `/api`，Vite 可通过 `VITE_API_PROXY_TARGET` 覆盖代理目标，不启用
   CORS；本地页面端口保持 `10001`。
 - 小程序各环境必须通过对应环境文件提供 API 地址，仓库中的 `test.example.com` 只是
   示例占位值。
+- Go 与 Web 先在本地联调，再通过 `release.sh service` 或 `release.sh apps` 发布到共享
+  环境验证。
 - 本地真实环境文件不提交；`VITE_` 和小程序构建变量只能保存客户端可公开信息。
 
 ## 部署边界

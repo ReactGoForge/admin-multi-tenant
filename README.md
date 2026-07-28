@@ -51,24 +51,39 @@ admin-multi-tenant/
 - pnpm `10.34.5`
 - 微信开发者工具（仅开发小程序时需要）
 
-安装前端依赖并创建 Web 本地配置：
+安装前端依赖并创建本地配置：
 
 ```bash
 pnpm --dir apps/web install
 pnpm --dir apps/miniapp install
+cp apps/service/.env.example apps/service/.env
 cp apps/web/.env.example apps/web/.env.local
 ```
 
-将 `apps/web/.env.local` 中的 `VITE_API_PROXY_TARGET` 设置为可访问的 API 地址。所有
-`VITE_` 变量都会暴露给浏览器，禁止填写密码、Token 或密钥。
+填写 `apps/service/.env` 中的开发数据库凭据和 `JWT_SECRET`。真实配置不得提交 Git。
+`VITE_API_PROXY_TARGET` 默认指向本机 Go 服务；所有 `VITE_` 变量都会暴露给浏览器，
+禁止填写密码、Token 或密钥。
 
-启动 Web：
+启动 Go：
+
+```bash
+make -C apps/service run
+```
+
+Go 默认监听 `http://127.0.0.1:8080`。启动后可检查：
+
+```bash
+curl http://127.0.0.1:8080/healthz
+curl http://127.0.0.1:8080/readyz
+```
+
+再启动 Web：
 
 ```bash
 pnpm --dir apps/web dev
 ```
 
-默认地址为 `http://localhost:10001`，同源 `/api` 请求由 Vite 转发到配置的 API。
+默认地址为 `http://localhost:10001`，同源 `/api` 请求由 Vite 转发到本机 Go 服务。
 
 启动微信小程序开发构建：
 
@@ -80,8 +95,8 @@ TARO_APP_ENV=development pnpm --dir apps/miniapp dev:weapp
 
 ## 配置与检查
 
-服务端通过环境变量连接 MySQL、Redis、MinIO 和微信小程序能力。服务器配置模板位于
-`deploy/.env.example`，其中密码和密钥必须在仓库外保存。
+服务端本地配置模板位于 `apps/service/.env.example`，服务器配置模板位于
+`deploy/.env.example`。密码和密钥只能保存在未提交的环境文件中。
 
 常用检查命令：
 

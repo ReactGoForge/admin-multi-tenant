@@ -5,7 +5,7 @@ import { defineConfig, loadEnv } from 'vite'
 
 const chromeDevToolsProbePath
   = '/.well-known/appspecific/com.chrome.devtools.json'
-const defaultApiProxyTarget = 'https://test.example.com'
+const defaultApiProxyTarget = 'http://127.0.0.1:8080'
 
 /** 阻止 Chrome DevTools 的工作区探测请求进入 React Router。 */
 function ignoreChromeDevToolsProbe(): Plugin {

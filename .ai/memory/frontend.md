@@ -59,5 +59,6 @@
 - Web 重点覆盖 Query 与关键响应；小程序覆盖 scene、Storage、Request ID、登录、恢复、
   401 自愈、跨租户切换和竞态。
 - 页面运行验证优先复用用户维护的 `http://localhost:10001`，不得擅自重复启动或替换
-  该进程；本地 Web `/api` 代理目标由 `VITE_API_PROXY_TARGET` 配置。
+  该进程；本地 Web `/api` 缺省代理到本机 Go 服务 `http://127.0.0.1:8080`，并可由
+  `VITE_API_PROXY_TARGET` 覆盖。
 - 小程序开发环境 API 由 `.env.development` 配置；仓库示例域名不能直接用于联调。

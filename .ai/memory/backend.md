@@ -6,10 +6,12 @@
 
 - `apps/service` 入口是 `cmd/server/main.go`，使用 Gin 和标准库 `http.Server` 监听
   `:8080`，支持超时配置和最多 10 秒优雅退出。
+- 本地通过 `make run` 启动，Makefile 只负责导出 `apps/service/.env` 并运行
+  `go run ./cmd/server`，不会自动执行 Migration。
 - 测试服务器通过环境文件为 Go Runtime 注入 MySQL、Redis 和 MinIO 连接配置；GORM
   使用 MySQL 应用账号，禁止 root，连接使用 `utf8mb4`、`parseTime=true`、`loc=Local`。
-- 本地电脑不运行 Go 服务或基础设施；Go 修改在本地测试后通过 `release.sh service`
-  或 `release.sh apps` 发布到测试服务器联调。
+- 本地 Go 服务使用开发数据库、Redis 和 MinIO；共享环境仍通过 `release.sh service`
+  或 `release.sh apps` 发布产物。
 - `healthz` 只判断进程存活；`readyz` 在三秒内检查 MySQL 和配置中实际启用的验证码、
   登录限流 Redis，失败返回 HTTP 503 与业务码 `50004`。
 - `apps/service/docs/openapi/openapi.yaml` 是渐进式 OpenAPI 3.1 契约；不安装 Swaggo，

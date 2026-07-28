@@ -3,16 +3,53 @@
 本文记录开发检查、数据库 Migration、发布和常见排障流程。部署准备与服务器初始化见
 [服务器部署指南](./deployment.md)。
 
-## Web 管理后台
+## 本地配置
 
-安装依赖并创建本地配置：
+安装前端依赖并复制本地配置模板：
 
 ```bash
 pnpm --dir apps/web install
+pnpm --dir apps/miniapp install
+cp apps/service/.env.example apps/service/.env
 cp apps/web/.env.example apps/web/.env.local
 ```
 
-将 `VITE_API_PROXY_TARGET` 配置为可访问的 API，然后启动：
+填写 `apps/service/.env` 中的数据库凭据和 `JWT_SECRET`。真实 `.env` 已被 Git 忽略，
+不得提交密码或密钥。Web 默认将 `/api` 代理到本机 `127.0.0.1:8080`。
+
+## Go 服务
+
+Go module 为：
+
+```text
+github.com/ReactGoForge/admin-multi-tenant/apps/service
+```
+
+启动本地服务：
+
+```bash
+make -C apps/service run
+```
+
+检查服务状态：
+
+```bash
+curl http://127.0.0.1:8080/healthz
+curl http://127.0.0.1:8080/readyz
+```
+
+运行测试：
+
+```bash
+cd apps/service
+go test ./...
+```
+
+`make run` 只负责从 `apps/service/.env` 导出环境变量并启动服务，不会执行 Migration。
+
+## Web 管理后台
+
+先启动本机 Go 服务，再启动 Web：
 
 ```bash
 pnpm --dir apps/web dev
@@ -45,23 +82,6 @@ TARO_APP_ENV=development pnpm --dir apps/miniapp dev:weapp
 pnpm --dir apps/miniapp check
 pnpm --dir apps/miniapp test
 ```
-
-## Go 服务
-
-Go module 为：
-
-```text
-github.com/ReactGoForge/admin-multi-tenant/apps/service
-```
-
-运行测试：
-
-```bash
-cd apps/service
-go test ./...
-```
-
-服务配置通过环境变量提供。仓库不保存真实数据库、Redis、JWT、MinIO 或微信凭据。
 
 ## OpenAPI 契约
 
