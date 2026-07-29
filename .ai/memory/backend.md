@@ -14,7 +14,7 @@
   或 `release.sh apps` 发布产物。
 - `healthz` 只判断进程存活；`readyz` 在三秒内检查 MySQL 和配置中实际启用的验证码、
   登录限流 Redis，失败返回 HTTP 503 与业务码 `50004`。
-- `apps/service/docs/openapi/openapi.yaml` 是渐进式 OpenAPI 3.1 契约；不安装 Swaggo，
+- `apps/service/docs/openapi/openapi.yaml` 是覆盖完整 Gin 路由表的 OpenAPI 3.1 唯一入口，`paths/` 与 `components/` 分别按业务模块和领域拆分；不安装 Swaggo，
   不注册 Swagger UI。
 - 数据库结构只由 `apps/service/migrations` 的 Goose SQL Migration 管理，不使用
   AutoMigrate。

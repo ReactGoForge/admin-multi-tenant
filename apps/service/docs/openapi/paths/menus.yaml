@@ -1,0 +1,283 @@
+"pathApiAdminPlatformMenus":
+  "get":
+    "tags":
+      - "PlatformMenus"
+    "operationId": "getApiAdminPlatformMenus"
+    "summary": "GET /api/admin/platform/menus"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MenuList"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "post":
+    "tags":
+      - "PlatformMenus"
+    "operationId": "postApiAdminPlatformMenus"
+    "summary": "POST /api/admin/platform/menus"
+    "security":
+      -
+        "bearerAuth": []
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/MenuMutationRequest"
+    "responses":
+      "201":
+        "description": "创建成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformMenusMenuId":
+  "patch":
+    "tags":
+      - "PlatformMenus"
+    "operationId": "patchApiAdminPlatformMenusMenuId"
+    "summary": "PATCH /api/admin/platform/menus/{menuId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "menuId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/MenuMutationRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "delete":
+    "tags":
+      - "PlatformMenus"
+    "operationId": "deleteApiAdminPlatformMenusMenuId"
+    "summary": "DELETE /api/admin/platform/menus/{menuId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "menuId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformMenusMenuIdStatus":
+  "patch":
+    "tags":
+      - "PlatformMenus"
+    "operationId": "patchApiAdminPlatformMenusMenuIdStatus"
+    "summary": "PATCH /api/admin/platform/menus/{menuId}/status"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "menuId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/StatusRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantMenus":
+  "get":
+    "tags":
+      - "TenantMenus"
+    "operationId": "getApiAdminTenantMenus"
+    "summary": "GET /api/admin/tenant/menus"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MenuList"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

@@ -1,0 +1,133 @@
+"pathApiMiniappAuthLogin":
+  "post":
+    "tags":
+      - "Miniapp"
+    "operationId": "postApiMiniappAuthLogin"
+    "summary": "POST /api/miniapp/auth/login"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/MiniappLoginRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MiniappSession"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+      "503":
+        "$ref": "../openapi.yaml#/components/responses/ServiceUnavailable"
+"pathApiMiniappMe":
+  "get":
+    "tags":
+      - "Miniapp"
+    "operationId": "getApiMiniappMe"
+    "summary": "GET /api/miniapp/me"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MiniappCurrentSession"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiMiniappProfileAvatar":
+  "post":
+    "tags":
+      - "Miniapp"
+    "operationId": "postApiMiniappProfileAvatar"
+    "summary": "POST /api/miniapp/profile/avatar"
+    "security":
+      -
+        "bearerAuth": []
+    "requestBody":
+      "required": true
+      "content":
+        "multipart/form-data":
+          "schema":
+            "type": "object"
+            "properties":
+              "file":
+                "type": "string"
+                "format": "binary"
+            "required":
+              - "file"
+    "responses":
+      "201":
+        "description": "创建成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/AvatarResult"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

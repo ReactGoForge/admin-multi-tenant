@@ -11,7 +11,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["ping"];
+        /** GET /ping */
+        get: operations["getPing"];
         put?: never;
         post?: never;
         delete?: never;
@@ -27,7 +28,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["healthz"];
+        /** GET /healthz */
+        get: operations["getHealthz"];
         put?: never;
         post?: never;
         delete?: never;
@@ -43,7 +45,59 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["readyz"];
+        /** GET /readyz */
+        get: operations["getReadyz"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/public/platform-brand": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/public/platform-brand */
+        get: operations["getApiPublicPlatformBrand"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/public/images/{imageId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/public/images/{imageId} */
+        get: operations["getApiPublicImagesImageId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/auth/captcha": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/auth/captcha */
+        get: operations["getApiAdminAuthCaptcha"];
         put?: never;
         post?: never;
         delete?: never;
@@ -61,23 +115,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["loginAdmin"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/admin/platform/users": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["listPlatformUsers"];
-        put?: never;
-        post?: never;
+        /** POST /api/admin/auth/login */
+        post: operations["postApiAdminAuthLogin"];
         delete?: never;
         options?: never;
         head?: never;
@@ -93,7 +132,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["loginMiniapp"];
+        /** POST /api/miniapp/auth/login */
+        post: operations["postApiMiniappAuthLogin"];
         delete?: never;
         options?: never;
         head?: never;
@@ -107,7 +147,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getMiniappCurrentSession"];
+        /** GET /api/miniapp/me */
+        get: operations["getApiMiniappMe"];
         put?: never;
         post?: never;
         delete?: never;
@@ -116,93 +157,1759 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/miniapp/profile/avatar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** POST /api/miniapp/profile/avatar */
+        post: operations["postApiMiniappProfileAvatar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/me */
+        get: operations["getApiAdminMe"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/profile/basic": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/profile/basic */
+        put: operations["putApiAdminProfileBasic"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/profile/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/profile/password */
+        put: operations["putApiAdminProfilePassword"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/profile/avatar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** POST /api/admin/profile/avatar */
+        post: operations["postApiAdminProfileAvatar"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/dictionary-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/dictionary-options */
+        get: operations["getApiAdminDictionaryOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/system": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/system */
+        get: operations["getApiAdminPlatformLogsSystem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/system/filter-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/system/filter-options */
+        get: operations["getApiAdminPlatformLogsSystemFilterOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/operations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/operations */
+        get: operations["getApiAdminPlatformLogsOperations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/operations/filter-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/operations/filter-options */
+        get: operations["getApiAdminPlatformLogsOperationsFilterOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/login */
+        get: operations["getApiAdminPlatformLogsLogin"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/logs/login/filter-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/logs/login/filter-options */
+        get: operations["getApiAdminPlatformLogsLoginFilterOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/dictionaries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/dictionaries */
+        get: operations["getApiAdminPlatformDictionaries"];
+        put?: never;
+        /** POST /api/admin/platform/dictionaries */
+        post: operations["postApiAdminPlatformDictionaries"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/dictionaries/{dictionaryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/dictionaries/{dictionaryId} */
+        delete: operations["deleteApiAdminPlatformDictionariesDictionaryId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/dictionaries/{dictionaryId} */
+        patch: operations["patchApiAdminPlatformDictionariesDictionaryId"];
+        trace?: never;
+    };
+    "/api/admin/platform/dictionaries/{dictionaryId}/items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** POST /api/admin/platform/dictionaries/{dictionaryId}/items */
+        post: operations["postApiAdminPlatformDictionariesDictionaryIdItems"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/dictionaries/{dictionaryId}/items/{itemId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/dictionaries/{dictionaryId}/items/{itemId} */
+        delete: operations["deleteApiAdminPlatformDictionariesDictionaryIdItemsItemId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/dictionaries/{dictionaryId}/items/{itemId} */
+        patch: operations["patchApiAdminPlatformDictionariesDictionaryIdItemsItemId"];
+        trace?: never;
+    };
+    "/api/admin/platform/employees/options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/employees/options */
+        get: operations["getApiAdminPlatformEmployeesOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/employees": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/employees */
+        get: operations["getApiAdminPlatformEmployees"];
+        put?: never;
+        /** POST /api/admin/platform/employees */
+        post: operations["postApiAdminPlatformEmployees"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/employees/{employeeId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/employees/{employeeId} */
+        delete: operations["deleteApiAdminPlatformEmployeesEmployeeId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/employees/{employeeId} */
+        patch: operations["patchApiAdminPlatformEmployeesEmployeeId"];
+        trace?: never;
+    };
+    "/api/admin/platform/employees/{employeeId}/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/platform/employees/{employeeId}/roles */
+        put: operations["putApiAdminPlatformEmployeesEmployeeIdRoles"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/employees/{employeeId}/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/platform/employees/{employeeId}/password */
+        put: operations["putApiAdminPlatformEmployeesEmployeeIdPassword"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/employees/{employeeId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/employees/{employeeId}/status */
+        patch: operations["patchApiAdminPlatformEmployeesEmployeeIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/platform/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/roles */
+        get: operations["getApiAdminPlatformRoles"];
+        put?: never;
+        /** POST /api/admin/platform/roles */
+        post: operations["postApiAdminPlatformRoles"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/roles/permission-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/roles/permission-options */
+        get: operations["getApiAdminPlatformRolesPermissionOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/roles/{roleId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/roles/{roleId} */
+        get: operations["getApiAdminPlatformRolesRoleId"];
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/roles/{roleId} */
+        delete: operations["deleteApiAdminPlatformRolesRoleId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/roles/{roleId} */
+        patch: operations["patchApiAdminPlatformRolesRoleId"];
+        trace?: never;
+    };
+    "/api/admin/platform/roles/{roleId}/employees": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/roles/{roleId}/employees */
+        get: operations["getApiAdminPlatformRolesRoleIdEmployees"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/roles/{roleId}/permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/platform/roles/{roleId}/permissions */
+        put: operations["putApiAdminPlatformRolesRoleIdPermissions"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/roles/{roleId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/roles/{roleId}/status */
+        patch: operations["patchApiAdminPlatformRolesRoleIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/platform/menus": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/menus */
+        get: operations["getApiAdminPlatformMenus"];
+        put?: never;
+        /** POST /api/admin/platform/menus */
+        post: operations["postApiAdminPlatformMenus"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/menus/{menuId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/menus/{menuId} */
+        delete: operations["deleteApiAdminPlatformMenusMenuId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/menus/{menuId} */
+        patch: operations["patchApiAdminPlatformMenusMenuId"];
+        trace?: never;
+    };
+    "/api/admin/platform/menus/{menuId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/menus/{menuId}/status */
+        patch: operations["patchApiAdminPlatformMenusMenuIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/platform/departments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/departments */
+        get: operations["getApiAdminPlatformDepartments"];
+        put?: never;
+        /** POST /api/admin/platform/departments */
+        post: operations["postApiAdminPlatformDepartments"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/departments/{departmentId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/departments/{departmentId} */
+        delete: operations["deleteApiAdminPlatformDepartmentsDepartmentId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/departments/{departmentId} */
+        patch: operations["patchApiAdminPlatformDepartmentsDepartmentId"];
+        trace?: never;
+    };
+    "/api/admin/platform/tenants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/tenants */
+        get: operations["getApiAdminPlatformTenants"];
+        put?: never;
+        /** POST /api/admin/platform/tenants */
+        post: operations["postApiAdminPlatformTenants"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/tenants/{tenantId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/tenants/{tenantId} */
+        delete: operations["deleteApiAdminPlatformTenantsTenantId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/tenants/{tenantId} */
+        patch: operations["patchApiAdminPlatformTenantsTenantId"];
+        trace?: never;
+    };
+    "/api/admin/platform/tenants/{tenantId}/owner-password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/platform/tenants/{tenantId}/owner-password */
+        put: operations["putApiAdminPlatformTenantsTenantIdOwnerPassword"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/tenants/{tenantId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/tenants/{tenantId}/status */
+        patch: operations["patchApiAdminPlatformTenantsTenantIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/platform/tenants/{tenantId}/miniapp-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/tenants/{tenantId}/miniapp-code */
+        get: operations["getApiAdminPlatformTenantsTenantIdMiniappCode"];
+        put?: never;
+        /** POST /api/admin/platform/tenants/{tenantId}/miniapp-code */
+        post: operations["postApiAdminPlatformTenantsTenantIdMiniappCode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/tenants/{tenantId}/enter": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** POST /api/admin/platform/tenants/{tenantId}/enter */
+        post: operations["postApiAdminPlatformTenantsTenantIdEnter"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/settings/miniapp": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/settings/miniapp */
+        get: operations["getApiAdminPlatformSettingsMiniapp"];
+        /** PUT /api/admin/platform/settings/miniapp */
+        put: operations["putApiAdminPlatformSettingsMiniapp"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/settings/basic": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/settings/basic */
+        get: operations["getApiAdminPlatformSettingsBasic"];
+        /** PUT /api/admin/platform/settings/basic */
+        put: operations["putApiAdminPlatformSettingsBasic"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/images/tenant-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/images/tenant-options */
+        get: operations["getApiAdminPlatformImagesTenantOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/images": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/images */
+        get: operations["getApiAdminPlatformImages"];
+        put?: never;
+        /** POST /api/admin/platform/images */
+        post: operations["postApiAdminPlatformImages"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/images/{imageId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/images/{imageId} */
+        delete: operations["deleteApiAdminPlatformImagesImageId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/images/{imageId} */
+        patch: operations["patchApiAdminPlatformImagesImageId"];
+        trace?: never;
+    };
+    "/api/admin/platform/image-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/image-categories */
+        get: operations["getApiAdminPlatformImageCategories"];
+        put?: never;
+        /** POST /api/admin/platform/image-categories */
+        post: operations["postApiAdminPlatformImageCategories"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/image-categories/{categoryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/platform/image-categories/{categoryId} */
+        delete: operations["deleteApiAdminPlatformImageCategoriesCategoryId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/image-categories/{categoryId} */
+        patch: operations["patchApiAdminPlatformImageCategoriesCategoryId"];
+        trace?: never;
+    };
+    "/api/admin/platform/users/tenant-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/users/tenant-options */
+        get: operations["getApiAdminPlatformUsersTenantOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/users */
+        get: operations["getApiAdminPlatformUsers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/users/{userId}/tenants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/platform/users/{userId}/tenants */
+        get: operations["getApiAdminPlatformUsersUserIdTenants"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/platform/users/{userId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/platform/users/{userId}/status */
+        patch: operations["patchApiAdminPlatformUsersUserIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/tenant/logs/operations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/logs/operations */
+        get: operations["getApiAdminTenantLogsOperations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/logs/operations/filter-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/logs/operations/filter-options */
+        get: operations["getApiAdminTenantLogsOperationsFilterOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/logs/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/logs/login */
+        get: operations["getApiAdminTenantLogsLogin"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/logs/login/filter-options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/logs/login/filter-options */
+        get: operations["getApiAdminTenantLogsLoginFilterOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/employees": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/employees */
+        get: operations["getApiAdminTenantEmployees"];
+        put?: never;
+        /** POST /api/admin/tenant/employees */
+        post: operations["postApiAdminTenantEmployees"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/employees/options": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/employees/options */
+        get: operations["getApiAdminTenantEmployeesOptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/employees/{employeeId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/tenant/employees/{employeeId} */
+        delete: operations["deleteApiAdminTenantEmployeesEmployeeId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/employees/{employeeId} */
+        patch: operations["patchApiAdminTenantEmployeesEmployeeId"];
+        trace?: never;
+    };
+    "/api/admin/tenant/employees/{employeeId}/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/tenant/employees/{employeeId}/roles */
+        put: operations["putApiAdminTenantEmployeesEmployeeIdRoles"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/employees/{employeeId}/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/tenant/employees/{employeeId}/password */
+        put: operations["putApiAdminTenantEmployeesEmployeeIdPassword"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/employees/{employeeId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/employees/{employeeId}/status */
+        patch: operations["patchApiAdminTenantEmployeesEmployeeIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/tenant/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/roles */
+        get: operations["getApiAdminTenantRoles"];
+        put?: never;
+        /** POST /api/admin/tenant/roles */
+        post: operations["postApiAdminTenantRoles"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/roles/{roleId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/roles/{roleId} */
+        get: operations["getApiAdminTenantRolesRoleId"];
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/tenant/roles/{roleId} */
+        delete: operations["deleteApiAdminTenantRolesRoleId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/roles/{roleId} */
+        patch: operations["patchApiAdminTenantRolesRoleId"];
+        trace?: never;
+    };
+    "/api/admin/tenant/roles/{roleId}/employees": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/roles/{roleId}/employees */
+        get: operations["getApiAdminTenantRolesRoleIdEmployees"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/roles/{roleId}/permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** PUT /api/admin/tenant/roles/{roleId}/permissions */
+        put: operations["putApiAdminTenantRolesRoleIdPermissions"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/roles/{roleId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/roles/{roleId}/status */
+        patch: operations["patchApiAdminTenantRolesRoleIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/tenant/menus": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/menus */
+        get: operations["getApiAdminTenantMenus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/departments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/departments */
+        get: operations["getApiAdminTenantDepartments"];
+        put?: never;
+        /** POST /api/admin/tenant/departments */
+        post: operations["postApiAdminTenantDepartments"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/departments/{departmentId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/tenant/departments/{departmentId} */
+        delete: operations["deleteApiAdminTenantDepartmentsDepartmentId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/departments/{departmentId} */
+        patch: operations["patchApiAdminTenantDepartmentsDepartmentId"];
+        trace?: never;
+    };
+    "/api/admin/tenant/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/users */
+        get: operations["getApiAdminTenantUsers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/users/{userId}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/users/{userId}/status */
+        patch: operations["patchApiAdminTenantUsersUserIdStatus"];
+        trace?: never;
+    };
+    "/api/admin/tenant/settings/basic": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/settings/basic */
+        get: operations["getApiAdminTenantSettingsBasic"];
+        /** PUT /api/admin/tenant/settings/basic */
+        put: operations["putApiAdminTenantSettingsBasic"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/images": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/images */
+        get: operations["getApiAdminTenantImages"];
+        put?: never;
+        /** POST /api/admin/tenant/images */
+        post: operations["postApiAdminTenantImages"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/images/{imageId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/tenant/images/{imageId} */
+        delete: operations["deleteApiAdminTenantImagesImageId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/images/{imageId} */
+        patch: operations["patchApiAdminTenantImagesImageId"];
+        trace?: never;
+    };
+    "/api/admin/tenant/image-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** GET /api/admin/tenant/image-categories */
+        get: operations["getApiAdminTenantImageCategories"];
+        put?: never;
+        /** POST /api/admin/tenant/image-categories */
+        post: operations["postApiAdminTenantImageCategories"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/admin/tenant/image-categories/{categoryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** DELETE /api/admin/tenant/image-categories/{categoryId} */
+        delete: operations["deleteApiAdminTenantImageCategoriesCategoryId"];
+        options?: never;
+        head?: never;
+        /** PATCH /api/admin/tenant/image-categories/{categoryId} */
+        patch: operations["patchApiAdminTenantImageCategoriesCategoryId"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @description BIGINT 标识以字符串传输 */
         Identifier: string;
         /** @enum {string} */
         EntityStatus: "enabled" | "disabled";
-        ErrorResponse: {
-            code: number;
-            message: string;
-            data: null;
+        EmptyObject: Record<string, never>;
+        GenericObject: {
+            [key: string]: unknown;
         };
+        StringList: string[];
+        IdentifierList: string[];
         PingData: {
-            /** @constant */
-            message: "pong";
+            /** @example pong */
+            message: string;
         };
         HealthData: {
-            /** @constant */
-            status: "ok";
+            /** @example ok */
+            status: string;
         };
         ReadyData: {
-            /** @constant */
-            status: "ready";
+            /** @example ready */
+            status: string;
         };
-        PingResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["PingData"];
-        };
-        HealthResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["HealthData"];
-        };
-        ReadyResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["ReadyData"];
-        };
-        SuccessResponse: {
-            /** @constant */
-            code: 0;
-            /** @constant */
-            message: "成功";
-            data: unknown;
+        Captcha: {
+            enabled: boolean;
+            captchaId?: string;
+            image?: string;
+            expiresIn?: number;
         };
         AdminLoginRequest: {
             username: string;
-            /** Format: password */
             password: string;
             captchaId?: string;
             captchaCode?: string;
         };
-        AdminLoginData: {
+        AdminLogin: {
             accessToken: string;
-            /** Format: date-time */
+            /** @description 服务端时间字符串 */
             expiresAt: string;
         };
-        AdminLoginResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["AdminLoginData"];
+        CurrentRole: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            systemKey: string | null;
         };
-        PlatformUser: {
-            id: components["schemas"]["Identifier"];
-            nickname: string | null;
-            avatarUrl: string | null;
+        NavigationMenu: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            parentId: string | null;
+            name: string;
+            type: string;
+            scope: string;
+            path: string | null;
+            component: string | null;
+            icon: string | null;
+            permissionCode: string | null;
+            tenantAssignable: boolean;
+            sort: number;
+            visible: boolean;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        AdminCurrentUser: {
+            /** @description BIGINT 标识以字符串传输 */
+            employeeId: string;
+            name: string;
+            loginAccount: string;
             phone: string | null;
-            status: components["schemas"]["EntityStatus"];
-            tenantCount: number;
+            avatarText: string;
+            avatarUrl: string | null;
+            /** @enum {string} */
+            workspace: "platform" | "tenant";
+            tenantId: string | null;
+            tenantName: string | null;
+            tenantIconUrl: string | null;
+            platformName: string;
+            platformIconUrl: string | null;
+            /** @enum {string} */
+            mode: "normal" | "managed";
+            isSuperAdmin: boolean;
+            roles: components["schemas"]["CurrentRole"][];
+            permissions: string[];
+            menus: components["schemas"]["NavigationMenu"][];
+        };
+        BasicProfileRequest: {
+            name?: string;
+            phone: string | null;
+        };
+        ChangePasswordRequest: {
+            currentPassword: string;
+            newPassword: string;
+        };
+        AvatarResult: {
+            /** Format: uri */
+            avatarUrl: string;
+        };
+        StatusRequest: {
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        PasswordRequest: {
+            password: string;
+        };
+        EmployeeRole: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            assignable: boolean;
+        };
+        DepartmentSummary: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+        };
+        Employee: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            loginAccount: string;
+            department: components["schemas"]["DepartmentSummary"] | null;
+            roles: components["schemas"]["EmployeeRole"][];
+            phone: string | null;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            /** @description 服务端时间字符串 */
             createdAt: string;
         };
-        PlatformUserPage: {
-            items: components["schemas"]["PlatformUser"][];
+        EmployeePage: {
+            items: components["schemas"]["Employee"][];
             page: number;
             pageSize: number;
             total: number;
         };
-        PlatformUserListResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["PlatformUserPage"];
+        EmployeeOption: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            assignable: boolean;
+        };
+        EmployeeOptions: {
+            roles: components["schemas"]["EmployeeOption"][];
+            departments: components["schemas"]["EmployeeOption"][];
+        };
+        EmployeeMutationRequest: {
+            name: string;
+            loginAccount: string;
+            password?: string;
+            phone?: string | null;
+            departmentId?: string | null;
+            roleIds: string[];
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        EmployeeRolesRequest: {
+            roleIds: string[];
+        };
+        Role: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            description: string | null;
+            type: string;
+            systemKey: string | null;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            employeeCount: number;
+            permissionCount: number;
+            permissionConfigurable: boolean;
+            /** @description 服务端时间字符串 */
+            createdAt: string;
+        };
+        RolePage: {
+            items: components["schemas"]["Role"][];
+            page: number;
+            pageSize: number;
+            total: number;
+        };
+        RoleMutationRequest: {
+            name: string;
+            description?: string | null;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        RolePermissionsRequest: {
+            permissionIds: string[];
+        };
+        RoleDetail: {
+            role: components["schemas"]["Role"];
+            permissionIds: string[];
+            menus: components["schemas"]["NavigationMenu"][];
+        };
+        PlatformRoleDetail: {
+            role: components["schemas"]["Role"];
+            permissionIds: string[];
+            tenantPermissionIds: string[];
+            menus: components["schemas"]["NavigationMenu"][];
+            tenantMenus: components["schemas"]["NavigationMenu"][];
+        };
+        PermissionOptions: {
+            platformMenus?: components["schemas"]["NavigationMenu"][];
+            tenantMenus?: components["schemas"]["NavigationMenu"][];
+        };
+        MenuList: {
+            items: components["schemas"]["NavigationMenu"][];
+        };
+        MenuMutationRequest: {
+            /** @enum {string} */
+            scope: "platform" | "tenant";
+            parentId: string | null;
+            name: string;
+            type: string;
+            path: string | null;
+            component: string | null;
+            icon: string | null;
+            permissionCode: string | null;
+            tenantAssignable: boolean;
+            sort: number;
+            visible: boolean;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        DepartmentLeader: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+        };
+        Department: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            parentId: string | null;
+            name: string;
+            leader: components["schemas"]["DepartmentLeader"] | null;
+            employeeCount: number;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        DepartmentList: {
+            items: components["schemas"]["Department"][];
+        };
+        DepartmentMutationRequest: {
+            parentId: string | null;
+            name: string;
+            leaderEmployeeId: string | null;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        Tenant: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            remark: string | null;
+            iconUrl: string | null;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            ownerEmployeeId: string | null;
+            ownerName: string | null;
+            loginAccount: string | null;
+        };
+        TenantPage: {
+            items: components["schemas"]["Tenant"][];
+            page: number;
+            pageSize: number;
+            total: number;
+        };
+        TenantCreateRequest: {
+            name: string;
+            ownerName: string;
+            loginAccount: string;
+            password: string;
+        };
+        TenantUpdateRequest: {
+            name: string;
+            loginAccount: string;
+            remark?: string | null;
+        };
+        MiniappCode: {
+            extension: string;
+            /** @description Base64 图片内容 */
+            image: string;
+        };
+        DictionaryItem: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            label: string;
+            value: string;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        DictionaryType: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            code: string;
+            name: string;
+            remark: string | null;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            isSystem: boolean;
+            items: components["schemas"]["DictionaryItem"][];
+        };
+        DictionaryTypeList: components["schemas"]["DictionaryType"][];
+        DictionaryTypeRequest: {
+            code: string;
+            name: string;
+            remark: string | null;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        DictionaryItemRequest: {
+            label: string;
+            value: string;
+            sort: number;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        DictionaryOption: {
+            label: string;
+            value: string;
+            sort: number;
+        };
+        DictionaryOptionMap: {
+            [key: string]: components["schemas"]["DictionaryOption"][];
+        };
+        LogItem: {
+            [key: string]: unknown;
+        };
+        LogPage: {
+            items: components["schemas"]["LogItem"][];
+            page: number;
+            pageSize: number;
+            total: number;
+        };
+        FilterOption: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        OperatorOption: {
+            key: string;
+            actorType: string;
+            /** @description BIGINT 标识以字符串传输 */
+            actorId: string;
+            name: string;
+            account: string | null;
+        };
+        CodeOption: {
+            value: string;
+            label: string;
+        };
+        LogFilterOptions: {
+            tenants: components["schemas"]["FilterOption"][];
+            operators: components["schemas"]["OperatorOption"][];
+            modules: components["schemas"]["CodeOption"][];
+            actions: components["schemas"]["CodeOption"][];
+        };
+        BasicSettings: {
+            name: string;
+            iconImageId: string | null;
+            iconUrl: string | null;
+        };
+        BasicSettingsRequest: {
+            name: string;
+            iconImageId?: string | null;
+        };
+        PlatformBrand: {
+            name: string;
+            iconUrl: string | null;
+        };
+        ImageAsset: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            tenantId: string | null;
+            tenantName: string | null;
+            categoryId: string | null;
+            categoryName: string | null;
+            originalName: string;
+            mimeType: string;
+            sizeBytes: number;
+            previewUrl: string;
+            /** @description 服务端时间字符串 */
+            createdAt: string;
+        };
+        ImagePage: {
+            items: components["schemas"]["ImageAsset"][];
+            page: number;
+            pageSize: number;
+            total: number;
+        };
+        ImageCategory: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            tenantId: string | null;
+            name: string;
+            isShared: boolean;
+        };
+        ImageCategoryList: components["schemas"]["ImageCategory"][];
+        ImageCategoryRequest: {
+            name: string;
+        };
+        ImageUpdateRequest: {
+            name?: string;
+            categoryId?: string | null;
+        };
+        ImageTenantOption: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        ImageTenantOptionList: components["schemas"]["ImageTenantOption"][];
+        MiniappLoginRequest: {
+            code: string;
+            scene: string;
+            phoneCode?: string;
         };
         MiniappUser: {
-            id: components["schemas"]["Identifier"];
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
             phone: string | null;
             nickname: string | null;
             avatarUrl: string | null;
-            status: components["schemas"]["EntityStatus"];
+            /** @enum {string} */
+            status: "enabled" | "disabled";
         };
         MiniappTenant: {
-            id: components["schemas"]["Identifier"];
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
             name: string;
         };
         MiniappSession: {
             accessToken: string;
-            /** Format: date-time */
+            /** @description 服务端时间字符串 */
             expiresAt: string;
             user: components["schemas"]["MiniappUser"];
             tenant: components["schemas"]["MiniappTenant"];
@@ -211,16 +1918,69 @@ export interface components {
             user: components["schemas"]["MiniappUser"];
             tenant: components["schemas"]["MiniappTenant"];
         };
-        MiniappLoginRequest: {
-            code: string;
-            scene: components["schemas"]["Identifier"];
-            phoneCode?: string;
+        PlatformUser: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            nickname: string | null;
+            avatarUrl: string | null;
+            phone: string | null;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+            tenantCount: number;
+            /** @description 服务端时间字符串 */
+            createdAt: string;
         };
-        MiniappLoginResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["MiniappSession"];
+        PlatformUserPage: {
+            items: components["schemas"]["PlatformUser"][];
+            page: number;
+            pageSize: number;
+            total: number;
         };
-        MiniappCurrentSessionResponse: components["schemas"]["SuccessResponse"] & {
-            data?: components["schemas"]["MiniappCurrentSession"];
+        TenantUser: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            nickname: string | null;
+            avatarUrl: string | null;
+            phone: string | null;
+            /** @enum {string} */
+            platformStatus: "enabled" | "disabled";
+            /** @enum {string} */
+            tenantStatus: "enabled" | "disabled";
+            /** @description 服务端时间字符串 */
+            joinedAt: string;
+        };
+        TenantUserPage: {
+            items: components["schemas"]["TenantUser"][];
+            page: number;
+            pageSize: number;
+            total: number;
+        };
+        UserTenant: {
+            /** @description BIGINT 标识以字符串传输 */
+            tenantId: string;
+            tenantName: string;
+            /** @enum {string} */
+            tenantStatus: "enabled" | "disabled";
+            /** @enum {string} */
+            userStatus: "enabled" | "disabled";
+            /** @description 服务端时间字符串 */
+            joinedAt: string;
+        };
+        UserTenantList: components["schemas"]["UserTenant"][];
+        TenantOption: {
+            /** @description BIGINT 标识以字符串传输 */
+            id: string;
+            name: string;
+            /** @enum {string} */
+            status: "enabled" | "disabled";
+        };
+        TenantOptionList: components["schemas"]["TenantOption"][];
+        MiniappSettings: {
+            appId: string;
+            secretConfigured: boolean;
+        };
+        MiniappSettingsRequest: {
+            appId: string;
         };
     };
     responses: {
@@ -230,7 +1990,11 @@ export interface components {
                 [name: string]: unknown;
             };
             content: {
-                "application/json": components["schemas"]["ErrorResponse"];
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
             };
         };
         /** @description 登录状态无效 */
@@ -239,25 +2003,76 @@ export interface components {
                 [name: string]: unknown;
             };
             content: {
-                "application/json": components["schemas"]["ErrorResponse"];
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
             };
         };
-        /** @description 权限或租户状态不允许访问 */
+        /** @description 权限不足 */
         Forbidden: {
             headers: {
                 [name: string]: unknown;
             };
             content: {
-                "application/json": components["schemas"]["ErrorResponse"];
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
             };
         };
-        /** @description 必要依赖暂不可用 */
+        /** @description 资源不存在 */
+        NotFound: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
+            };
+        };
+        /** @description 数据冲突或资源受保护 */
+        Conflict: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
+            };
+        };
+        /** @description 服务内部错误 */
+        InternalError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
+            };
+        };
+        /** @description 必要依赖或外部服务不可用 */
         ServiceUnavailable: {
             headers: {
                 [name: string]: unknown;
             };
             content: {
-                "application/json": components["schemas"]["ErrorResponse"];
+                "application/json": {
+                    code: number;
+                    message: string;
+                    data: null;
+                };
             };
         };
     };
@@ -271,7 +2086,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    ping: {
+    getPing: {
         parameters: {
             query?: never;
             header?: never;
@@ -280,18 +2095,27 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description 服务可访问 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["PingResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["PingData"];
+                    };
                 };
             };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
         };
     };
-    healthz: {
+    getHealthz: {
         parameters: {
             query?: never;
             header?: never;
@@ -300,18 +2124,27 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description 进程存活 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["HealthResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["HealthData"];
+                    };
                 };
             };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
         };
     };
-    readyz: {
+    getReadyz: {
         parameters: {
             query?: never;
             header?: never;
@@ -320,19 +2153,114 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description 必要依赖可用 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ReadyResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ReadyData"];
+                    };
                 };
             };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
             503: components["responses"]["ServiceUnavailable"];
         };
     };
-    loginAdmin: {
+    getApiPublicPlatformBrand: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["PlatformBrand"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiPublicImagesImageId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 图片二进制内容 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "image/png": string;
+                    "image/jpeg": string;
+                    "image/webp": string;
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminAuthCaptcha: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["Captcha"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminAuthLogin: {
         parameters: {
             query?: never;
             header?: never;
@@ -345,50 +2273,27 @@ export interface operations {
             };
         };
         responses: {
-            /** @description 登录成功 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AdminLoginResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["AdminLogin"];
+                    };
                 };
             };
             400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthorized"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
         };
     };
-    listPlatformUsers: {
-        parameters: {
-            query?: {
-                page?: components["parameters"]["Page"];
-                pageSize?: components["parameters"]["PageSize"];
-                nickname?: string;
-                phone?: string;
-                tenantId?: components["schemas"]["Identifier"];
-                status?: components["schemas"]["EntityStatus"];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description 平台用户分页结果 */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PlatformUserListResponse"];
-                };
-            };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthorized"];
-            403: components["responses"]["Forbidden"];
-        };
-    };
-    loginMiniapp: {
+    postApiMiniappAuthLogin: {
         parameters: {
             query?: never;
             header?: never;
@@ -401,20 +2306,28 @@ export interface operations {
             };
         };
         responses: {
-            /** @description 小程序登录成功 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MiniappLoginResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MiniappSession"];
+                    };
                 };
             };
             400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthorized"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+            503: components["responses"]["ServiceUnavailable"];
         };
     };
-    getMiniappCurrentSession: {
+    getApiMiniappMe: {
         parameters: {
             query?: never;
             header?: never;
@@ -423,17 +2336,3951 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description 当前小程序用户与租户 */
+            /** @description 请求成功 */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MiniappCurrentSessionResponse"];
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MiniappCurrentSession"];
+                    };
                 };
             };
+            400: components["responses"]["BadRequest"];
             401: components["responses"]["Unauthorized"];
             403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiMiniappProfileAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["AvatarResult"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminMe: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["AdminCurrentUser"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminProfileBasic: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BasicProfileRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminProfilePassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ChangePasswordRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminProfileAvatar: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["AvatarResult"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminDictionaryOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["DictionaryOptionMap"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsSystem: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                startAt?: string;
+                endAt?: string;
+                logType?: string;
+                level?: string;
+                method?: string;
+                route?: string;
+                requestId?: string;
+                operator?: string;
+                actorType?: string;
+                workspace?: string;
+                module?: string;
+                action?: string;
+                targetType?: string;
+                target?: string;
+                account?: string;
+                result?: string;
+                clientIp?: string;
+                statusCode?: number;
+                businessCode?: number;
+                tenantId?: string;
+                actorId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsSystemFilterOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogFilterOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsOperations: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                startAt?: string;
+                endAt?: string;
+                logType?: string;
+                level?: string;
+                method?: string;
+                route?: string;
+                requestId?: string;
+                operator?: string;
+                actorType?: string;
+                workspace?: string;
+                module?: string;
+                action?: string;
+                targetType?: string;
+                target?: string;
+                account?: string;
+                result?: string;
+                clientIp?: string;
+                statusCode?: number;
+                businessCode?: number;
+                tenantId?: string;
+                actorId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsOperationsFilterOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogFilterOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsLogin: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                startAt?: string;
+                endAt?: string;
+                logType?: string;
+                level?: string;
+                method?: string;
+                route?: string;
+                requestId?: string;
+                operator?: string;
+                actorType?: string;
+                workspace?: string;
+                module?: string;
+                action?: string;
+                targetType?: string;
+                target?: string;
+                account?: string;
+                result?: string;
+                clientIp?: string;
+                statusCode?: number;
+                businessCode?: number;
+                tenantId?: string;
+                actorId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformLogsLoginFilterOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogFilterOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformDictionaries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["DictionaryTypeList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformDictionaries: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DictionaryTypeRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformDictionariesDictionaryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionaryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformDictionariesDictionaryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionaryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DictionaryTypeRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformDictionariesDictionaryIdItems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionaryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DictionaryItemRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformDictionariesDictionaryIdItemsItemId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionaryId: string;
+                itemId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformDictionariesDictionaryIdItemsItemId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionaryId: string;
+                itemId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DictionaryItemRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformEmployeesOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeeOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformEmployeesEmployeeId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformEmployeesEmployeeId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformEmployeesEmployeeIdRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeRolesRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformEmployeesEmployeeIdPassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformEmployeesEmployeeIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["RolePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoleMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformRolesPermissionOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["PermissionOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["PlatformRoleDetail"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoleMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformRolesRoleIdEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformRolesRoleIdPermissions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RolePermissionsRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformRolesRoleIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformMenus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MenuList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformMenus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MenuMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformMenusMenuId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                menuId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformMenusMenuId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                menuId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MenuMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformMenusMenuIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                menuId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformDepartments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["DepartmentList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformDepartments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformDepartmentsDepartmentId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                departmentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformDepartmentsDepartmentId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                departmentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformTenants: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["TenantPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformTenants: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TenantCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformTenantsTenantId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformTenantsTenantId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TenantUpdateRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformTenantsTenantIdOwnerPassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformTenantsTenantIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformTenantsTenantIdMiniappCode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MiniappCode"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformTenantsTenantIdMiniappCode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MiniappCode"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformTenantsTenantIdEnter: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tenantId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["AdminLogin"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformSettingsMiniapp: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MiniappSettings"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformSettingsMiniapp: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MiniappSettingsRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformSettingsBasic: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["BasicSettings"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminPlatformSettingsBasic: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BasicSettingsRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformImagesTenantOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageTenantOptionList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformImages: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                source?: "platform" | "tenant";
+                tenantId?: string;
+                categoryId?: string;
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImagePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformImages: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                source?: "platform" | "tenant";
+                tenantId?: string;
+                categoryId?: string;
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageAsset"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformImagesImageId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformImagesImageId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageUpdateRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformImageCategories: {
+        parameters: {
+            query?: {
+                source?: "platform" | "tenant";
+                tenantId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageCategoryList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminPlatformImageCategories: {
+        parameters: {
+            query?: {
+                source?: "platform" | "tenant";
+                tenantId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageCategory"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminPlatformImageCategoriesCategoryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                categoryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformImageCategoriesCategoryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                categoryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformUsersTenantOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["TenantOptionList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformUsers: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                nickname?: string;
+                phone?: string;
+                tenantId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["PlatformUserPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminPlatformUsersUserIdTenants: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["TenantPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminPlatformUsersUserIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantLogsOperations: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                startAt?: string;
+                endAt?: string;
+                logType?: string;
+                level?: string;
+                method?: string;
+                route?: string;
+                requestId?: string;
+                operator?: string;
+                actorType?: string;
+                workspace?: string;
+                module?: string;
+                action?: string;
+                targetType?: string;
+                target?: string;
+                account?: string;
+                result?: string;
+                clientIp?: string;
+                statusCode?: number;
+                businessCode?: number;
+                tenantId?: string;
+                actorId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantLogsOperationsFilterOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogFilterOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantLogsLogin: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                startAt?: string;
+                endAt?: string;
+                logType?: string;
+                level?: string;
+                method?: string;
+                route?: string;
+                requestId?: string;
+                operator?: string;
+                actorType?: string;
+                workspace?: string;
+                module?: string;
+                action?: string;
+                targetType?: string;
+                target?: string;
+                account?: string;
+                result?: string;
+                clientIp?: string;
+                statusCode?: number;
+                businessCode?: number;
+                tenantId?: string;
+                actorId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantLogsLoginFilterOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["LogFilterOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminTenantEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantEmployeesOptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeeOptions"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminTenantEmployeesEmployeeId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantEmployeesEmployeeId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminTenantEmployeesEmployeeIdRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeRolesRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminTenantEmployeesEmployeeIdPassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantEmployeesEmployeeIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["RolePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminTenantRoles: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoleMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["RoleDetail"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminTenantRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantRolesRoleId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RoleMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantRolesRoleIdEmployees: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                name?: string;
+                loginAccount?: string;
+                departmentId?: string;
+                roleId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["EmployeePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminTenantRolesRoleIdPermissions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RolePermissionsRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantRolesRoleIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantMenus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["MenuList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantDepartments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["DepartmentList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminTenantDepartments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminTenantDepartmentsDepartmentId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                departmentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantDepartmentsDepartmentId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                departmentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentMutationRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantUsers: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                nickname?: string;
+                phone?: string;
+                tenantId?: string;
+                status?: "enabled" | "disabled";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["TenantUserPage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantUsersUserIdStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StatusRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantSettingsBasic: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["BasicSettings"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    putApiAdminTenantSettingsBasic: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BasicSettingsRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantImages: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                source?: "platform" | "tenant";
+                tenantId?: string;
+                categoryId?: string;
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImagePage"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminTenantImages: {
+        parameters: {
+            query?: {
+                page?: components["parameters"]["Page"];
+                pageSize?: components["parameters"]["PageSize"];
+                source?: "platform" | "tenant";
+                tenantId?: string;
+                categoryId?: string;
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageAsset"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminTenantImagesImageId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantImagesImageId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageUpdateRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    getApiAdminTenantImageCategories: {
+        parameters: {
+            query?: {
+                source?: "platform" | "tenant";
+                tenantId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageCategoryList"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    postApiAdminTenantImageCategories: {
+        parameters: {
+            query?: {
+                source?: "platform" | "tenant";
+                tenantId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description 创建成功 */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: components["schemas"]["ImageCategory"];
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deleteApiAdminTenantImageCategoriesCategoryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                categoryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    patchApiAdminTenantImageCategoriesCategoryId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                categoryId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImageCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description 请求成功 */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @constant */
+                        code: 0;
+                        message: string;
+                        data: null;
+                    };
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthorized"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            409: components["responses"]["Conflict"];
+            500: components["responses"]["InternalError"];
         };
     };
 }

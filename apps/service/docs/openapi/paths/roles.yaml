@@ -1,0 +1,812 @@
+"pathApiAdminPlatformRoles":
+  "get":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "getApiAdminPlatformRoles"
+    "summary": "GET /api/admin/platform/roles"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/RolePage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "post":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "postApiAdminPlatformRoles"
+    "summary": "POST /api/admin/platform/roles"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RoleMutationRequest"
+    "responses":
+      "201":
+        "description": "创建成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformRolesPermissionOptions":
+  "get":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "getApiAdminPlatformRolesPermissionOptions"
+    "summary": "GET /api/admin/platform/roles/permission-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/PermissionOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformRolesRoleId":
+  "get":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "getApiAdminPlatformRolesRoleId"
+    "summary": "GET /api/admin/platform/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/PlatformRoleDetail"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "patch":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "patchApiAdminPlatformRolesRoleId"
+    "summary": "PATCH /api/admin/platform/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RoleMutationRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "delete":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "deleteApiAdminPlatformRolesRoleId"
+    "summary": "DELETE /api/admin/platform/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformRolesRoleIdPermissions":
+  "put":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "putApiAdminPlatformRolesRoleIdPermissions"
+    "summary": "PUT /api/admin/platform/roles/{roleId}/permissions"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RolePermissionsRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformRolesRoleIdStatus":
+  "patch":
+    "tags":
+      - "PlatformRoles"
+    "operationId": "patchApiAdminPlatformRolesRoleIdStatus"
+    "summary": "PATCH /api/admin/platform/roles/{roleId}/status"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/StatusRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantRoles":
+  "get":
+    "tags":
+      - "TenantRoles"
+    "operationId": "getApiAdminTenantRoles"
+    "summary": "GET /api/admin/tenant/roles"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/RolePage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "post":
+    "tags":
+      - "TenantRoles"
+    "operationId": "postApiAdminTenantRoles"
+    "summary": "POST /api/admin/tenant/roles"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RoleMutationRequest"
+    "responses":
+      "201":
+        "description": "创建成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantRolesRoleId":
+  "get":
+    "tags":
+      - "TenantRoles"
+    "operationId": "getApiAdminTenantRolesRoleId"
+    "summary": "GET /api/admin/tenant/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/RoleDetail"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "patch":
+    "tags":
+      - "TenantRoles"
+    "operationId": "patchApiAdminTenantRolesRoleId"
+    "summary": "PATCH /api/admin/tenant/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RoleMutationRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "delete":
+    "tags":
+      - "TenantRoles"
+    "operationId": "deleteApiAdminTenantRolesRoleId"
+    "summary": "DELETE /api/admin/tenant/roles/{roleId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantRolesRoleIdPermissions":
+  "put":
+    "tags":
+      - "TenantRoles"
+    "operationId": "putApiAdminTenantRolesRoleIdPermissions"
+    "summary": "PUT /api/admin/tenant/roles/{roleId}/permissions"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/RolePermissionsRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantRolesRoleIdStatus":
+  "patch":
+    "tags":
+      - "TenantRoles"
+    "operationId": "patchApiAdminTenantRolesRoleIdStatus"
+    "summary": "PATCH /api/admin/tenant/roles/{roleId}/status"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "roleId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/StatusRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

@@ -1,0 +1,484 @@
+"pathApiAdminPlatformTenants":
+  "get":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "getApiAdminPlatformTenants"
+    "summary": "GET /api/admin/platform/tenants"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/TenantPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "post":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "postApiAdminPlatformTenants"
+    "summary": "POST /api/admin/platform/tenants"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "name"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "status"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "enum":
+            - "enabled"
+            - "disabled"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/TenantCreateRequest"
+    "responses":
+      "201":
+        "description": "创建成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformTenantsTenantId":
+  "patch":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "patchApiAdminPlatformTenantsTenantId"
+    "summary": "PATCH /api/admin/platform/tenants/{tenantId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/TenantUpdateRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "delete":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "deleteApiAdminPlatformTenantsTenantId"
+    "summary": "DELETE /api/admin/platform/tenants/{tenantId}"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformTenantsTenantIdOwnerPassword":
+  "put":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "putApiAdminPlatformTenantsTenantIdOwnerPassword"
+    "summary": "PUT /api/admin/platform/tenants/{tenantId}/owner-password"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/PasswordRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformTenantsTenantIdStatus":
+  "patch":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "patchApiAdminPlatformTenantsTenantIdStatus"
+    "summary": "PATCH /api/admin/platform/tenants/{tenantId}/status"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "requestBody":
+      "required": true
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "../openapi.yaml#/components/schemas/StatusRequest"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "type": "null"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformTenantsTenantIdMiniappCode":
+  "get":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "getApiAdminPlatformTenantsTenantIdMiniappCode"
+    "summary": "GET /api/admin/platform/tenants/{tenantId}/miniapp-code"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MiniappCode"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+  "post":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "postApiAdminPlatformTenantsTenantIdMiniappCode"
+    "summary": "POST /api/admin/platform/tenants/{tenantId}/miniapp-code"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/MiniappCode"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformTenantsTenantIdEnter":
+  "post":
+    "tags":
+      - "PlatformTenants"
+    "operationId": "postApiAdminPlatformTenantsTenantIdEnter"
+    "summary": "POST /api/admin/platform/tenants/{tenantId}/enter"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "name": "tenantId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/AdminLogin"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

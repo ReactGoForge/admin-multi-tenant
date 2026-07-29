@@ -1,0 +1,1085 @@
+"pathApiAdminPlatformLogsSystem":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsSystem"
+    "summary": "GET /api/admin/platform/logs/system"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "startAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "endAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "logType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "level"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "method"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "route"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "requestId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "operator"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "actorType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "workspace"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "module"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "action"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "targetType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "target"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "account"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "result"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "clientIp"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "statusCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "businessCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "tenantId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+      -
+        "name": "actorId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformLogsSystemFilterOptions":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsSystemFilterOptions"
+    "summary": "GET /api/admin/platform/logs/system/filter-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogFilterOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformLogsOperations":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsOperations"
+    "summary": "GET /api/admin/platform/logs/operations"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "startAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "endAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "logType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "level"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "method"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "route"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "requestId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "operator"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "actorType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "workspace"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "module"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "action"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "targetType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "target"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "account"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "result"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "clientIp"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "statusCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "businessCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "tenantId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+      -
+        "name": "actorId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformLogsOperationsFilterOptions":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsOperationsFilterOptions"
+    "summary": "GET /api/admin/platform/logs/operations/filter-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogFilterOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformLogsLogin":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsLogin"
+    "summary": "GET /api/admin/platform/logs/login"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "startAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "endAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "logType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "level"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "method"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "route"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "requestId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "operator"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "actorType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "workspace"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "module"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "action"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "targetType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "target"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "account"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "result"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "clientIp"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "statusCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "businessCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "tenantId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+      -
+        "name": "actorId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminPlatformLogsLoginFilterOptions":
+  "get":
+    "tags":
+      - "PlatformLogs"
+    "operationId": "getApiAdminPlatformLogsLoginFilterOptions"
+    "summary": "GET /api/admin/platform/logs/login/filter-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogFilterOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantLogsOperations":
+  "get":
+    "tags":
+      - "TenantLogs"
+    "operationId": "getApiAdminTenantLogsOperations"
+    "summary": "GET /api/admin/tenant/logs/operations"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "startAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "endAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "logType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "level"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "method"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "route"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "requestId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "operator"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "actorType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "workspace"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "module"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "action"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "targetType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "target"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "account"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "result"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "clientIp"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "statusCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "businessCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "tenantId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+      -
+        "name": "actorId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantLogsOperationsFilterOptions":
+  "get":
+    "tags":
+      - "TenantLogs"
+    "operationId": "getApiAdminTenantLogsOperationsFilterOptions"
+    "summary": "GET /api/admin/tenant/logs/operations/filter-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogFilterOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantLogsLogin":
+  "get":
+    "tags":
+      - "TenantLogs"
+    "operationId": "getApiAdminTenantLogsLogin"
+    "summary": "GET /api/admin/tenant/logs/login"
+    "security":
+      -
+        "bearerAuth": []
+    "parameters":
+      -
+        "$ref": "../openapi.yaml#/components/parameters/Page"
+      -
+        "$ref": "../openapi.yaml#/components/parameters/PageSize"
+      -
+        "name": "startAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "endAt"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "logType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "level"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "method"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "route"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "requestId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "operator"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "actorType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "workspace"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "module"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "action"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "targetType"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "target"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "account"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "result"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "clientIp"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+      -
+        "name": "statusCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "businessCode"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "integer"
+          "minimum": 0
+      -
+        "name": "tenantId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+      -
+        "name": "actorId"
+        "in": "query"
+        "required": false
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogPage"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiAdminTenantLogsLoginFilterOptions":
+  "get":
+    "tags":
+      - "TenantLogs"
+    "operationId": "getApiAdminTenantLogsLoginFilterOptions"
+    "summary": "GET /api/admin/tenant/logs/login/filter-options"
+    "security":
+      -
+        "bearerAuth": []
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/LogFilterOptions"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "401":
+        "$ref": "../openapi.yaml#/components/responses/Unauthorized"
+      "403":
+        "$ref": "../openapi.yaml#/components/responses/Forbidden"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

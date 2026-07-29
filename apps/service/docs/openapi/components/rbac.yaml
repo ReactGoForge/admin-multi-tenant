@@ -1,0 +1,534 @@
+"StatusRequest":
+  "type": "object"
+  "properties":
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "status"
+"PasswordRequest":
+  "type": "object"
+  "properties":
+    "password":
+      "type": "string"
+  "required":
+    - "password"
+"EmployeeRole":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "assignable":
+      "type": "boolean"
+  "required":
+    - "id"
+    - "name"
+    - "assignable"
+"DepartmentSummary":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+  "required":
+    - "id"
+    - "name"
+"Employee":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "loginAccount":
+      "type": "string"
+    "department":
+      "anyOf":
+        -
+          "$ref": "../openapi.yaml#/components/schemas/DepartmentSummary"
+        -
+          "type": "null"
+    "roles":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/EmployeeRole"
+    "phone":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "createdAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "id"
+    - "name"
+    - "loginAccount"
+    - "department"
+    - "roles"
+    - "phone"
+    - "status"
+    - "createdAt"
+"EmployeePage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/Employee"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"EmployeeOption":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "assignable":
+      "type": "boolean"
+  "required":
+    - "id"
+    - "name"
+    - "status"
+    - "assignable"
+"EmployeeOptions":
+  "type": "object"
+  "properties":
+    "roles":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/EmployeeOption"
+    "departments":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/EmployeeOption"
+  "required":
+    - "roles"
+    - "departments"
+"EmployeeMutationRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "loginAccount":
+      "type": "string"
+    "password":
+      "type": "string"
+    "phone":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "departmentId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "roleIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "name"
+    - "loginAccount"
+    - "roleIds"
+    - "status"
+"EmployeeRolesRequest":
+  "type": "object"
+  "properties":
+    "roleIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+  "required":
+    - "roleIds"
+"Role":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "description":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "type":
+      "type": "string"
+    "systemKey":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "employeeCount":
+      "type": "integer"
+      "minimum": 0
+    "permissionCount":
+      "type": "integer"
+      "minimum": 0
+    "permissionConfigurable":
+      "type": "boolean"
+    "createdAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "id"
+    - "name"
+    - "description"
+    - "type"
+    - "systemKey"
+    - "status"
+    - "employeeCount"
+    - "permissionCount"
+    - "permissionConfigurable"
+    - "createdAt"
+"RolePage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/Role"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"RoleMutationRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "description":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "name"
+    - "status"
+"RolePermissionsRequest":
+  "type": "object"
+  "properties":
+    "permissionIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+  "required":
+    - "permissionIds"
+"RoleDetail":
+  "type": "object"
+  "properties":
+    "role":
+      "$ref": "../openapi.yaml#/components/schemas/Role"
+    "permissionIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+    "menus":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+  "required":
+    - "role"
+    - "permissionIds"
+    - "menus"
+"PlatformRoleDetail":
+  "type": "object"
+  "properties":
+    "role":
+      "$ref": "../openapi.yaml#/components/schemas/Role"
+    "permissionIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+    "tenantPermissionIds":
+      "type": "array"
+      "items":
+        "type": "string"
+        "pattern": "^[1-9][0-9]*$"
+        "description": "BIGINT 标识以字符串传输"
+    "menus":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+    "tenantMenus":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+  "required":
+    - "role"
+    - "permissionIds"
+    - "tenantPermissionIds"
+    - "menus"
+    - "tenantMenus"
+"PermissionOptions":
+  "type": "object"
+  "properties":
+    "platformMenus":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+    "tenantMenus":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+"MenuList":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/NavigationMenu"
+  "required":
+    - "items"
+"MenuMutationRequest":
+  "type": "object"
+  "properties":
+    "scope":
+      "type": "string"
+      "enum":
+        - "platform"
+        - "tenant"
+    "parentId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "name":
+      "type": "string"
+    "type":
+      "type": "string"
+    "path":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "component":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "icon":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "permissionCode":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "tenantAssignable":
+      "type": "boolean"
+    "sort":
+      "type": "integer"
+      "minimum": 0
+    "visible":
+      "type": "boolean"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "scope"
+    - "parentId"
+    - "name"
+    - "type"
+    - "path"
+    - "component"
+    - "icon"
+    - "permissionCode"
+    - "tenantAssignable"
+    - "sort"
+    - "visible"
+    - "status"
+"DepartmentLeader":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+  "required":
+    - "id"
+    - "name"
+"Department":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "parentId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "name":
+      "type": "string"
+    "leader":
+      "anyOf":
+        -
+          "$ref": "../openapi.yaml#/components/schemas/DepartmentLeader"
+        -
+          "type": "null"
+    "employeeCount":
+      "type": "integer"
+      "minimum": 0
+    "sort":
+      "type": "integer"
+      "minimum": 0
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "id"
+    - "parentId"
+    - "name"
+    - "leader"
+    - "employeeCount"
+    - "sort"
+    - "status"
+"DepartmentList":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/Department"
+  "required":
+    - "items"
+"DepartmentMutationRequest":
+  "type": "object"
+  "properties":
+    "parentId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "name":
+      "type": "string"
+    "leaderEmployeeId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "sort":
+      "type": "integer"
+      "minimum": 0
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "parentId"
+    - "name"
+    - "leaderEmployeeId"
+    - "sort"
+    - "status"

@@ -1,0 +1,50 @@
+"Identifier":
+  "type": "string"
+  "pattern": "^[1-9][0-9]*$"
+  "description": "BIGINT 标识以字符串传输"
+"EntityStatus":
+  "type": "string"
+  "enum":
+    - "enabled"
+    - "disabled"
+"EmptyObject":
+  "type": "object"
+  "properties": {}
+  "additionalProperties": false
+"GenericObject":
+  "type": "object"
+  "additionalProperties": true
+"StringList":
+  "type": "array"
+  "items":
+    "type": "string"
+"IdentifierList":
+  "type": "array"
+  "items":
+    "type": "string"
+    "pattern": "^[1-9][0-9]*$"
+    "description": "BIGINT 标识以字符串传输"
+"PingData":
+  "type": "object"
+  "properties":
+    "message":
+      "type": "string"
+      "example": "pong"
+  "required":
+    - "message"
+"HealthData":
+  "type": "object"
+  "properties":
+    "status":
+      "type": "string"
+      "example": "ok"
+  "required":
+    - "status"
+"ReadyData":
+  "type": "object"
+  "properties":
+    "status":
+      "type": "string"
+      "example": "ready"
+  "required":
+    - "status"

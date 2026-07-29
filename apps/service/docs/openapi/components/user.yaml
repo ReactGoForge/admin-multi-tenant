@@ -1,0 +1,292 @@
+"MiniappLoginRequest":
+  "type": "object"
+  "properties":
+    "code":
+      "type": "string"
+    "scene":
+      "type": "string"
+    "phoneCode":
+      "type": "string"
+  "required":
+    - "code"
+    - "scene"
+"MiniappUser":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "phone":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "nickname":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "avatarUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "id"
+    - "phone"
+    - "nickname"
+    - "avatarUrl"
+    - "status"
+"MiniappTenant":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+  "required":
+    - "id"
+    - "name"
+"MiniappSession":
+  "type": "object"
+  "properties":
+    "accessToken":
+      "type": "string"
+    "expiresAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+    "user":
+      "$ref": "../openapi.yaml#/components/schemas/MiniappUser"
+    "tenant":
+      "$ref": "../openapi.yaml#/components/schemas/MiniappTenant"
+  "required":
+    - "accessToken"
+    - "expiresAt"
+    - "user"
+    - "tenant"
+"MiniappCurrentSession":
+  "type": "object"
+  "properties":
+    "user":
+      "$ref": "../openapi.yaml#/components/schemas/MiniappUser"
+    "tenant":
+      "$ref": "../openapi.yaml#/components/schemas/MiniappTenant"
+  "required":
+    - "user"
+    - "tenant"
+"PlatformUser":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "nickname":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "avatarUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "phone":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "tenantCount":
+      "type": "integer"
+      "minimum": 0
+    "createdAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "id"
+    - "nickname"
+    - "avatarUrl"
+    - "phone"
+    - "status"
+    - "tenantCount"
+    - "createdAt"
+"PlatformUserPage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/PlatformUser"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"TenantUser":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "nickname":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "avatarUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "phone":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "platformStatus":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "tenantStatus":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "joinedAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "id"
+    - "nickname"
+    - "avatarUrl"
+    - "phone"
+    - "platformStatus"
+    - "tenantStatus"
+    - "joinedAt"
+"TenantUserPage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/TenantUser"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"UserTenant":
+  "type": "object"
+  "properties":
+    "tenantId":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "tenantName":
+      "type": "string"
+    "tenantStatus":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "userStatus":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "joinedAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "tenantId"
+    - "tenantName"
+    - "tenantStatus"
+    - "userStatus"
+    - "joinedAt"
+"UserTenantList":
+  "type": "array"
+  "items":
+    "$ref": "../openapi.yaml#/components/schemas/UserTenant"
+"TenantOption":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "id"
+    - "name"
+    - "status"
+"TenantOptionList":
+  "type": "array"
+  "items":
+    "$ref": "../openapi.yaml#/components/schemas/TenantOption"
+"MiniappSettings":
+  "type": "object"
+  "properties":
+    "appId":
+      "type": "string"
+    "secretConfigured":
+      "type": "boolean"
+  "required":
+    - "appId"
+    - "secretConfigured"
+"MiniappSettingsRequest":
+  "type": "object"
+  "properties":
+    "appId":
+      "type": "string"
+  "required":
+    - "appId"

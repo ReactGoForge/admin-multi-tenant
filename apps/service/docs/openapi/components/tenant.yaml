@@ -1,0 +1,120 @@
+"Tenant":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "remark":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "iconUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+    "ownerEmployeeId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "ownerName":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "loginAccount":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+  "required":
+    - "id"
+    - "name"
+    - "remark"
+    - "iconUrl"
+    - "status"
+    - "ownerEmployeeId"
+    - "ownerName"
+    - "loginAccount"
+"TenantPage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/Tenant"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"TenantCreateRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "ownerName":
+      "type": "string"
+    "loginAccount":
+      "type": "string"
+    "password":
+      "type": "string"
+  "required":
+    - "name"
+    - "ownerName"
+    - "loginAccount"
+    - "password"
+"TenantUpdateRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "loginAccount":
+      "type": "string"
+    "remark":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+  "required":
+    - "name"
+    - "loginAccount"
+"MiniappCode":
+  "type": "object"
+  "properties":
+    "extension":
+      "type": "string"
+    "image":
+      "type": "string"
+      "description": "Base64 图片内容"
+  "required":
+    - "extension"
+    - "image"

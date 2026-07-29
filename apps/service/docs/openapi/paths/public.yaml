@@ -1,0 +1,72 @@
+"pathApiPublicPlatformBrand":
+  "get":
+    "tags":
+      - "Public"
+    "operationId": "getApiPublicPlatformBrand"
+    "summary": "GET /api/public/platform-brand"
+    "responses":
+      "200":
+        "description": "请求成功"
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "properties":
+                "code":
+                  "type": "integer"
+                  "const": 0
+                "message":
+                  "type": "string"
+                "data":
+                  "$ref": "../openapi.yaml#/components/schemas/PlatformBrand"
+              "required":
+                - "code"
+                - "message"
+                - "data"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"
+"pathApiPublicImagesImageId":
+  "get":
+    "tags":
+      - "Public"
+    "operationId": "getApiPublicImagesImageId"
+    "summary": "GET /api/public/images/{imageId}"
+    "parameters":
+      -
+        "name": "imageId"
+        "in": "path"
+        "required": true
+        "schema":
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+    "responses":
+      "200":
+        "description": "图片二进制内容"
+        "content":
+          "image/png":
+            "schema":
+              "type": "string"
+              "format": "binary"
+          "image/jpeg":
+            "schema":
+              "type": "string"
+              "format": "binary"
+          "image/webp":
+            "schema":
+              "type": "string"
+              "format": "binary"
+      "400":
+        "$ref": "../openapi.yaml#/components/responses/BadRequest"
+      "404":
+        "$ref": "../openapi.yaml#/components/responses/NotFound"
+      "409":
+        "$ref": "../openapi.yaml#/components/responses/Conflict"
+      "500":
+        "$ref": "../openapi.yaml#/components/responses/InternalError"

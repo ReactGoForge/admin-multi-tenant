@@ -1,0 +1,102 @@
+"LogItem":
+  "type": "object"
+  "additionalProperties": true
+"LogPage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/LogItem"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"FilterOption":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "id"
+    - "name"
+    - "status"
+"OperatorOption":
+  "type": "object"
+  "properties":
+    "key":
+      "type": "string"
+    "actorType":
+      "type": "string"
+    "actorId":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "account":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+  "required":
+    - "key"
+    - "actorType"
+    - "actorId"
+    - "name"
+    - "account"
+"CodeOption":
+  "type": "object"
+  "properties":
+    "value":
+      "type": "string"
+    "label":
+      "type": "string"
+  "required":
+    - "value"
+    - "label"
+"LogFilterOptions":
+  "type": "object"
+  "properties":
+    "tenants":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/FilterOption"
+    "operators":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/OperatorOption"
+    "modules":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/CodeOption"
+    "actions":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/CodeOption"
+  "required":
+    - "tenants"
+    - "operators"
+    - "modules"
+    - "actions"

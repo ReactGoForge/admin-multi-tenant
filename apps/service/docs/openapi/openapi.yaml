@@ -1,404 +1,537 @@
-openapi: 3.1.0
-info:
-  title: 云上 API
-  version: 0.1.0
-  description: |
-    云上三端公共接口契约。当前先覆盖统一响应、认证、健康检查、
-    平台用户列表和小程序当前会话；其他既有接口在后续修改时逐步纳入。
-servers:
-  - url: /
-tags:
-  - name: Health
-  - name: AdminAuth
-  - name: PlatformUsers
-  - name: MiniappAuth
-paths:
-  /ping:
-    get:
-      tags: [Health]
-      operationId: ping
-      responses:
-        "200":
-          description: 服务可访问
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PingResponse"
-  /healthz:
-    get:
-      tags: [Health]
-      operationId: healthz
-      responses:
-        "200":
-          description: 进程存活
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HealthResponse"
-  /readyz:
-    get:
-      tags: [Health]
-      operationId: readyz
-      responses:
-        "200":
-          description: 必要依赖可用
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ReadyResponse"
-        "503":
-          $ref: "#/components/responses/ServiceUnavailable"
-  /api/admin/auth/login:
-    post:
-      tags: [AdminAuth]
-      operationId: loginAdmin
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AdminLoginRequest"
-      responses:
-        "200":
-          description: 登录成功
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AdminLoginResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-  /api/admin/platform/users:
-    get:
-      tags: [PlatformUsers]
-      operationId: listPlatformUsers
-      security:
-        - bearerAuth: []
-      parameters:
-        - $ref: "#/components/parameters/Page"
-        - $ref: "#/components/parameters/PageSize"
-        - name: nickname
-          in: query
-          schema:
-            type: string
-        - name: phone
-          in: query
-          schema:
-            type: string
-        - name: tenantId
-          in: query
-          schema:
-            $ref: "#/components/schemas/Identifier"
-        - name: status
-          in: query
-          schema:
-            $ref: "#/components/schemas/EntityStatus"
-      responses:
-        "200":
-          description: 平台用户分页结果
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlatformUserListResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-  /api/miniapp/auth/login:
-    post:
-      tags: [MiniappAuth]
-      operationId: loginMiniapp
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MiniappLoginRequest"
-      responses:
-        "200":
-          description: 小程序登录成功
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MiniappLoginResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-  /api/miniapp/me:
-    get:
-      tags: [MiniappAuth]
-      operationId: getMiniappCurrentSession
-      security:
-        - bearerAuth: []
-      responses:
-        "200":
-          description: 当前小程序用户与租户
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MiniappCurrentSessionResponse"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-  parameters:
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-  responses:
-    BadRequest:
-      description: 请求参数错误
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    Unauthorized:
-      description: 登录状态无效
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    Forbidden:
-      description: 权限或租户状态不允许访问
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    ServiceUnavailable:
-      description: 必要依赖暂不可用
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-  schemas:
-    Identifier:
-      type: string
-      pattern: "^[1-9][0-9]*$"
-    EntityStatus:
-      type: string
-      enum: [enabled, disabled]
-    ErrorResponse:
-      type: object
-      required: [code, message, data]
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: "null"
-    PingData:
-      type: object
-      required: [message]
-      properties:
-        message:
-          type: string
-          const: pong
-    HealthData:
-      type: object
-      required: [status]
-      properties:
-        status:
-          type: string
-          const: ok
-    ReadyData:
-      type: object
-      required: [status]
-      properties:
-        status:
-          type: string
-          const: ready
-    PingResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/PingData"
-    HealthResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/HealthData"
-    ReadyResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/ReadyData"
-    SuccessResponse:
-      type: object
-      required: [code, message, data]
-      properties:
-        code:
-          type: integer
-          const: 0
-        message:
-          type: string
-          const: 成功
-        data: {}
-    AdminLoginRequest:
-      type: object
-      required: [username, password]
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-          format: password
-        captchaId:
-          type: string
-        captchaCode:
-          type: string
-    AdminLoginData:
-      type: object
-      required: [accessToken, expiresAt]
-      properties:
-        accessToken:
-          type: string
-        expiresAt:
-          type: string
-          format: date-time
-    AdminLoginResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/AdminLoginData"
-    PlatformUser:
-      type: object
-      required: [id, nickname, avatarUrl, phone, status, tenantCount, createdAt]
-      properties:
-        id:
-          $ref: "#/components/schemas/Identifier"
-        nickname:
-          type: [string, "null"]
-        avatarUrl:
-          type: [string, "null"]
-        phone:
-          type: [string, "null"]
-        status:
-          $ref: "#/components/schemas/EntityStatus"
-        tenantCount:
-          type: integer
-          minimum: 0
-        createdAt:
-          type: string
-    PlatformUserPage:
-      type: object
-      required: [items, page, pageSize, total]
-      properties:
-        items:
-          type: array
-          items:
-            $ref: "#/components/schemas/PlatformUser"
-        page:
-          type: integer
-          minimum: 1
-        pageSize:
-          type: integer
-          minimum: 1
-          maximum: 100
-        total:
-          type: integer
-          minimum: 0
-    PlatformUserListResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/PlatformUserPage"
-    MiniappUser:
-      type: object
-      required: [id, phone, nickname, avatarUrl, status]
-      properties:
-        id:
-          $ref: "#/components/schemas/Identifier"
-        phone:
-          type: [string, "null"]
-        nickname:
-          type: [string, "null"]
-        avatarUrl:
-          type: [string, "null"]
-        status:
-          $ref: "#/components/schemas/EntityStatus"
-    MiniappTenant:
-      type: object
-      required: [id, name]
-      properties:
-        id:
-          $ref: "#/components/schemas/Identifier"
-        name:
-          type: string
-    MiniappSession:
-      type: object
-      required: [accessToken, expiresAt, user, tenant]
-      properties:
-        accessToken:
-          type: string
-        expiresAt:
-          type: string
-          format: date-time
-        user:
-          $ref: "#/components/schemas/MiniappUser"
-        tenant:
-          $ref: "#/components/schemas/MiniappTenant"
-    MiniappCurrentSession:
-      type: object
-      required: [user, tenant]
-      properties:
-        user:
-          $ref: "#/components/schemas/MiniappUser"
-        tenant:
-          $ref: "#/components/schemas/MiniappTenant"
-    MiniappLoginRequest:
-      type: object
-      required: [code, scene]
-      properties:
-        code:
-          type: string
-        scene:
-          $ref: "#/components/schemas/Identifier"
-        phoneCode:
-          type: string
-    MiniappLoginResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/MiniappSession"
-    MiniappCurrentSessionResponse:
-      allOf:
-        - $ref: "#/components/schemas/SuccessResponse"
-        - type: object
-          properties:
-            data:
-              $ref: "#/components/schemas/MiniappCurrentSession"
+"openapi": "3.1.0"
+"info":
+  "title": "ReactGoForge Admin Multi-Tenant API"
+  "version": "0.1.0"
+  "description": "管理后台、Go API 服务与微信小程序共用的完整接口契约。"
+"servers":
+  -
+    "url": "/"
+"tags":
+  -
+    "name": "AdminAuth"
+  -
+    "name": "AdminCommon"
+  -
+    "name": "Health"
+  -
+    "name": "Miniapp"
+  -
+    "name": "PlatformDepartments"
+  -
+    "name": "PlatformDictionaries"
+  -
+    "name": "PlatformEmployees"
+  -
+    "name": "PlatformLogs"
+  -
+    "name": "PlatformMedia"
+  -
+    "name": "PlatformMenus"
+  -
+    "name": "PlatformRoles"
+  -
+    "name": "PlatformSettings"
+  -
+    "name": "PlatformTenants"
+  -
+    "name": "PlatformUsers"
+  -
+    "name": "Public"
+  -
+    "name": "TenantDepartments"
+  -
+    "name": "TenantEmployees"
+  -
+    "name": "TenantLogs"
+  -
+    "name": "TenantMedia"
+  -
+    "name": "TenantMenus"
+  -
+    "name": "TenantRoles"
+  -
+    "name": "TenantSettings"
+  -
+    "name": "TenantUsers"
+"paths":
+  "/ping":
+    "$ref": "./paths/health.yaml#/pathPing"
+  "/healthz":
+    "$ref": "./paths/health.yaml#/pathHealthz"
+  "/readyz":
+    "$ref": "./paths/health.yaml#/pathReadyz"
+  "/api/public/platform-brand":
+    "$ref": "./paths/public.yaml#/pathApiPublicPlatformBrand"
+  "/api/public/images/{imageId}":
+    "$ref": "./paths/public.yaml#/pathApiPublicImagesImageId"
+  "/api/admin/auth/captcha":
+    "$ref": "./paths/admin-auth.yaml#/pathApiAdminAuthCaptcha"
+  "/api/admin/auth/login":
+    "$ref": "./paths/admin-auth.yaml#/pathApiAdminAuthLogin"
+  "/api/miniapp/auth/login":
+    "$ref": "./paths/miniapp.yaml#/pathApiMiniappAuthLogin"
+  "/api/miniapp/me":
+    "$ref": "./paths/miniapp.yaml#/pathApiMiniappMe"
+  "/api/miniapp/profile/avatar":
+    "$ref": "./paths/miniapp.yaml#/pathApiMiniappProfileAvatar"
+  "/api/admin/me":
+    "$ref": "./paths/admin-common.yaml#/pathApiAdminMe"
+  "/api/admin/profile/basic":
+    "$ref": "./paths/admin-common.yaml#/pathApiAdminProfileBasic"
+  "/api/admin/profile/password":
+    "$ref": "./paths/admin-common.yaml#/pathApiAdminProfilePassword"
+  "/api/admin/profile/avatar":
+    "$ref": "./paths/admin-common.yaml#/pathApiAdminProfileAvatar"
+  "/api/admin/dictionary-options":
+    "$ref": "./paths/admin-common.yaml#/pathApiAdminDictionaryOptions"
+  "/api/admin/platform/logs/system":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsSystem"
+  "/api/admin/platform/logs/system/filter-options":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsSystemFilterOptions"
+  "/api/admin/platform/logs/operations":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsOperations"
+  "/api/admin/platform/logs/operations/filter-options":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsOperationsFilterOptions"
+  "/api/admin/platform/logs/login":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsLogin"
+  "/api/admin/platform/logs/login/filter-options":
+    "$ref": "./paths/logs.yaml#/pathApiAdminPlatformLogsLoginFilterOptions"
+  "/api/admin/platform/dictionaries":
+    "$ref": "./paths/dictionaries.yaml#/pathApiAdminPlatformDictionaries"
+  "/api/admin/platform/dictionaries/{dictionaryId}":
+    "$ref": "./paths/dictionaries.yaml#/pathApiAdminPlatformDictionariesDictionaryId"
+  "/api/admin/platform/dictionaries/{dictionaryId}/items":
+    "$ref": "./paths/dictionaries.yaml#/pathApiAdminPlatformDictionariesDictionaryIdItems"
+  "/api/admin/platform/dictionaries/{dictionaryId}/items/{itemId}":
+    "$ref": "./paths/dictionaries.yaml#/pathApiAdminPlatformDictionariesDictionaryIdItemsItemId"
+  "/api/admin/platform/employees/options":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployeesOptions"
+  "/api/admin/platform/employees":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployees"
+  "/api/admin/platform/employees/{employeeId}":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployeesEmployeeId"
+  "/api/admin/platform/employees/{employeeId}/roles":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployeesEmployeeIdRoles"
+  "/api/admin/platform/employees/{employeeId}/password":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployeesEmployeeIdPassword"
+  "/api/admin/platform/employees/{employeeId}/status":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformEmployeesEmployeeIdStatus"
+  "/api/admin/platform/roles":
+    "$ref": "./paths/roles.yaml#/pathApiAdminPlatformRoles"
+  "/api/admin/platform/roles/permission-options":
+    "$ref": "./paths/roles.yaml#/pathApiAdminPlatformRolesPermissionOptions"
+  "/api/admin/platform/roles/{roleId}":
+    "$ref": "./paths/roles.yaml#/pathApiAdminPlatformRolesRoleId"
+  "/api/admin/platform/roles/{roleId}/employees":
+    "$ref": "./paths/employees.yaml#/pathApiAdminPlatformRolesRoleIdEmployees"
+  "/api/admin/platform/roles/{roleId}/permissions":
+    "$ref": "./paths/roles.yaml#/pathApiAdminPlatformRolesRoleIdPermissions"
+  "/api/admin/platform/roles/{roleId}/status":
+    "$ref": "./paths/roles.yaml#/pathApiAdminPlatformRolesRoleIdStatus"
+  "/api/admin/platform/menus":
+    "$ref": "./paths/menus.yaml#/pathApiAdminPlatformMenus"
+  "/api/admin/platform/menus/{menuId}":
+    "$ref": "./paths/menus.yaml#/pathApiAdminPlatformMenusMenuId"
+  "/api/admin/platform/menus/{menuId}/status":
+    "$ref": "./paths/menus.yaml#/pathApiAdminPlatformMenusMenuIdStatus"
+  "/api/admin/platform/departments":
+    "$ref": "./paths/departments.yaml#/pathApiAdminPlatformDepartments"
+  "/api/admin/platform/departments/{departmentId}":
+    "$ref": "./paths/departments.yaml#/pathApiAdminPlatformDepartmentsDepartmentId"
+  "/api/admin/platform/tenants":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenants"
+  "/api/admin/platform/tenants/{tenantId}":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenantsTenantId"
+  "/api/admin/platform/tenants/{tenantId}/owner-password":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenantsTenantIdOwnerPassword"
+  "/api/admin/platform/tenants/{tenantId}/status":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenantsTenantIdStatus"
+  "/api/admin/platform/tenants/{tenantId}/miniapp-code":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenantsTenantIdMiniappCode"
+  "/api/admin/platform/tenants/{tenantId}/enter":
+    "$ref": "./paths/tenants.yaml#/pathApiAdminPlatformTenantsTenantIdEnter"
+  "/api/admin/platform/settings/miniapp":
+    "$ref": "./paths/settings.yaml#/pathApiAdminPlatformSettingsMiniapp"
+  "/api/admin/platform/settings/basic":
+    "$ref": "./paths/settings.yaml#/pathApiAdminPlatformSettingsBasic"
+  "/api/admin/platform/images/tenant-options":
+    "$ref": "./paths/media.yaml#/pathApiAdminPlatformImagesTenantOptions"
+  "/api/admin/platform/images":
+    "$ref": "./paths/media.yaml#/pathApiAdminPlatformImages"
+  "/api/admin/platform/images/{imageId}":
+    "$ref": "./paths/media.yaml#/pathApiAdminPlatformImagesImageId"
+  "/api/admin/platform/image-categories":
+    "$ref": "./paths/media.yaml#/pathApiAdminPlatformImageCategories"
+  "/api/admin/platform/image-categories/{categoryId}":
+    "$ref": "./paths/media.yaml#/pathApiAdminPlatformImageCategoriesCategoryId"
+  "/api/admin/platform/users/tenant-options":
+    "$ref": "./paths/users.yaml#/pathApiAdminPlatformUsersTenantOptions"
+  "/api/admin/platform/users":
+    "$ref": "./paths/users.yaml#/pathApiAdminPlatformUsers"
+  "/api/admin/platform/users/{userId}/tenants":
+    "$ref": "./paths/users.yaml#/pathApiAdminPlatformUsersUserIdTenants"
+  "/api/admin/platform/users/{userId}/status":
+    "$ref": "./paths/users.yaml#/pathApiAdminPlatformUsersUserIdStatus"
+  "/api/admin/tenant/logs/operations":
+    "$ref": "./paths/logs.yaml#/pathApiAdminTenantLogsOperations"
+  "/api/admin/tenant/logs/operations/filter-options":
+    "$ref": "./paths/logs.yaml#/pathApiAdminTenantLogsOperationsFilterOptions"
+  "/api/admin/tenant/logs/login":
+    "$ref": "./paths/logs.yaml#/pathApiAdminTenantLogsLogin"
+  "/api/admin/tenant/logs/login/filter-options":
+    "$ref": "./paths/logs.yaml#/pathApiAdminTenantLogsLoginFilterOptions"
+  "/api/admin/tenant/employees":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployees"
+  "/api/admin/tenant/employees/options":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployeesOptions"
+  "/api/admin/tenant/employees/{employeeId}":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployeesEmployeeId"
+  "/api/admin/tenant/employees/{employeeId}/roles":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployeesEmployeeIdRoles"
+  "/api/admin/tenant/employees/{employeeId}/password":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployeesEmployeeIdPassword"
+  "/api/admin/tenant/employees/{employeeId}/status":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantEmployeesEmployeeIdStatus"
+  "/api/admin/tenant/roles":
+    "$ref": "./paths/roles.yaml#/pathApiAdminTenantRoles"
+  "/api/admin/tenant/roles/{roleId}":
+    "$ref": "./paths/roles.yaml#/pathApiAdminTenantRolesRoleId"
+  "/api/admin/tenant/roles/{roleId}/employees":
+    "$ref": "./paths/employees.yaml#/pathApiAdminTenantRolesRoleIdEmployees"
+  "/api/admin/tenant/roles/{roleId}/permissions":
+    "$ref": "./paths/roles.yaml#/pathApiAdminTenantRolesRoleIdPermissions"
+  "/api/admin/tenant/roles/{roleId}/status":
+    "$ref": "./paths/roles.yaml#/pathApiAdminTenantRolesRoleIdStatus"
+  "/api/admin/tenant/menus":
+    "$ref": "./paths/menus.yaml#/pathApiAdminTenantMenus"
+  "/api/admin/tenant/departments":
+    "$ref": "./paths/departments.yaml#/pathApiAdminTenantDepartments"
+  "/api/admin/tenant/departments/{departmentId}":
+    "$ref": "./paths/departments.yaml#/pathApiAdminTenantDepartmentsDepartmentId"
+  "/api/admin/tenant/users":
+    "$ref": "./paths/users.yaml#/pathApiAdminTenantUsers"
+  "/api/admin/tenant/users/{userId}/status":
+    "$ref": "./paths/users.yaml#/pathApiAdminTenantUsersUserIdStatus"
+  "/api/admin/tenant/settings/basic":
+    "$ref": "./paths/settings.yaml#/pathApiAdminTenantSettingsBasic"
+  "/api/admin/tenant/images":
+    "$ref": "./paths/media.yaml#/pathApiAdminTenantImages"
+  "/api/admin/tenant/images/{imageId}":
+    "$ref": "./paths/media.yaml#/pathApiAdminTenantImagesImageId"
+  "/api/admin/tenant/image-categories":
+    "$ref": "./paths/media.yaml#/pathApiAdminTenantImageCategories"
+  "/api/admin/tenant/image-categories/{categoryId}":
+    "$ref": "./paths/media.yaml#/pathApiAdminTenantImageCategoriesCategoryId"
+"components":
+  "securitySchemes":
+    "bearerAuth":
+      "type": "http"
+      "scheme": "bearer"
+      "bearerFormat": "JWT"
+  "parameters":
+    "Page":
+      "name": "page"
+      "in": "query"
+      "schema":
+        "type": "integer"
+        "minimum": 1
+        "default": 1
+    "PageSize":
+      "name": "pageSize"
+      "in": "query"
+      "schema":
+        "type": "integer"
+        "minimum": 1
+        "maximum": 100
+        "default": 10
+  "responses":
+    "BadRequest":
+      "description": "请求参数错误"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "Unauthorized":
+      "description": "登录状态无效"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "Forbidden":
+      "description": "权限不足"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "NotFound":
+      "description": "资源不存在"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "Conflict":
+      "description": "数据冲突或资源受保护"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "InternalError":
+      "description": "服务内部错误"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+    "ServiceUnavailable":
+      "description": "必要依赖或外部服务不可用"
+      "content":
+        "application/json":
+          "schema":
+            "type": "object"
+            "properties":
+              "code":
+                "type": "integer"
+              "message":
+                "type": "string"
+              "data":
+                "type": "null"
+            "required":
+              - "code"
+              - "message"
+              - "data"
+  "schemas":
+    "Identifier":
+      "$ref": "./components/common.yaml#/Identifier"
+    "EntityStatus":
+      "$ref": "./components/common.yaml#/EntityStatus"
+    "EmptyObject":
+      "$ref": "./components/common.yaml#/EmptyObject"
+    "GenericObject":
+      "$ref": "./components/common.yaml#/GenericObject"
+    "StringList":
+      "$ref": "./components/common.yaml#/StringList"
+    "IdentifierList":
+      "$ref": "./components/common.yaml#/IdentifierList"
+    "PingData":
+      "$ref": "./components/common.yaml#/PingData"
+    "HealthData":
+      "$ref": "./components/common.yaml#/HealthData"
+    "ReadyData":
+      "$ref": "./components/common.yaml#/ReadyData"
+    "Captcha":
+      "$ref": "./components/auth.yaml#/Captcha"
+    "AdminLoginRequest":
+      "$ref": "./components/auth.yaml#/AdminLoginRequest"
+    "AdminLogin":
+      "$ref": "./components/auth.yaml#/AdminLogin"
+    "CurrentRole":
+      "$ref": "./components/auth.yaml#/CurrentRole"
+    "NavigationMenu":
+      "$ref": "./components/auth.yaml#/NavigationMenu"
+    "AdminCurrentUser":
+      "$ref": "./components/auth.yaml#/AdminCurrentUser"
+    "BasicProfileRequest":
+      "$ref": "./components/auth.yaml#/BasicProfileRequest"
+    "ChangePasswordRequest":
+      "$ref": "./components/auth.yaml#/ChangePasswordRequest"
+    "AvatarResult":
+      "$ref": "./components/auth.yaml#/AvatarResult"
+    "StatusRequest":
+      "$ref": "./components/rbac.yaml#/StatusRequest"
+    "PasswordRequest":
+      "$ref": "./components/rbac.yaml#/PasswordRequest"
+    "EmployeeRole":
+      "$ref": "./components/rbac.yaml#/EmployeeRole"
+    "DepartmentSummary":
+      "$ref": "./components/rbac.yaml#/DepartmentSummary"
+    "Employee":
+      "$ref": "./components/rbac.yaml#/Employee"
+    "EmployeePage":
+      "$ref": "./components/rbac.yaml#/EmployeePage"
+    "EmployeeOption":
+      "$ref": "./components/rbac.yaml#/EmployeeOption"
+    "EmployeeOptions":
+      "$ref": "./components/rbac.yaml#/EmployeeOptions"
+    "EmployeeMutationRequest":
+      "$ref": "./components/rbac.yaml#/EmployeeMutationRequest"
+    "EmployeeRolesRequest":
+      "$ref": "./components/rbac.yaml#/EmployeeRolesRequest"
+    "Role":
+      "$ref": "./components/rbac.yaml#/Role"
+    "RolePage":
+      "$ref": "./components/rbac.yaml#/RolePage"
+    "RoleMutationRequest":
+      "$ref": "./components/rbac.yaml#/RoleMutationRequest"
+    "RolePermissionsRequest":
+      "$ref": "./components/rbac.yaml#/RolePermissionsRequest"
+    "RoleDetail":
+      "$ref": "./components/rbac.yaml#/RoleDetail"
+    "PlatformRoleDetail":
+      "$ref": "./components/rbac.yaml#/PlatformRoleDetail"
+    "PermissionOptions":
+      "$ref": "./components/rbac.yaml#/PermissionOptions"
+    "MenuList":
+      "$ref": "./components/rbac.yaml#/MenuList"
+    "MenuMutationRequest":
+      "$ref": "./components/rbac.yaml#/MenuMutationRequest"
+    "DepartmentLeader":
+      "$ref": "./components/rbac.yaml#/DepartmentLeader"
+    "Department":
+      "$ref": "./components/rbac.yaml#/Department"
+    "DepartmentList":
+      "$ref": "./components/rbac.yaml#/DepartmentList"
+    "DepartmentMutationRequest":
+      "$ref": "./components/rbac.yaml#/DepartmentMutationRequest"
+    "Tenant":
+      "$ref": "./components/tenant.yaml#/Tenant"
+    "TenantPage":
+      "$ref": "./components/tenant.yaml#/TenantPage"
+    "TenantCreateRequest":
+      "$ref": "./components/tenant.yaml#/TenantCreateRequest"
+    "TenantUpdateRequest":
+      "$ref": "./components/tenant.yaml#/TenantUpdateRequest"
+    "MiniappCode":
+      "$ref": "./components/tenant.yaml#/MiniappCode"
+    "DictionaryItem":
+      "$ref": "./components/dictionary.yaml#/DictionaryItem"
+    "DictionaryType":
+      "$ref": "./components/dictionary.yaml#/DictionaryType"
+    "DictionaryTypeList":
+      "$ref": "./components/dictionary.yaml#/DictionaryTypeList"
+    "DictionaryTypeRequest":
+      "$ref": "./components/dictionary.yaml#/DictionaryTypeRequest"
+    "DictionaryItemRequest":
+      "$ref": "./components/dictionary.yaml#/DictionaryItemRequest"
+    "DictionaryOption":
+      "$ref": "./components/dictionary.yaml#/DictionaryOption"
+    "DictionaryOptionMap":
+      "$ref": "./components/dictionary.yaml#/DictionaryOptionMap"
+    "LogItem":
+      "$ref": "./components/logging.yaml#/LogItem"
+    "LogPage":
+      "$ref": "./components/logging.yaml#/LogPage"
+    "FilterOption":
+      "$ref": "./components/logging.yaml#/FilterOption"
+    "OperatorOption":
+      "$ref": "./components/logging.yaml#/OperatorOption"
+    "CodeOption":
+      "$ref": "./components/logging.yaml#/CodeOption"
+    "LogFilterOptions":
+      "$ref": "./components/logging.yaml#/LogFilterOptions"
+    "BasicSettings":
+      "$ref": "./components/media.yaml#/BasicSettings"
+    "BasicSettingsRequest":
+      "$ref": "./components/media.yaml#/BasicSettingsRequest"
+    "PlatformBrand":
+      "$ref": "./components/media.yaml#/PlatformBrand"
+    "ImageAsset":
+      "$ref": "./components/media.yaml#/ImageAsset"
+    "ImagePage":
+      "$ref": "./components/media.yaml#/ImagePage"
+    "ImageCategory":
+      "$ref": "./components/media.yaml#/ImageCategory"
+    "ImageCategoryList":
+      "$ref": "./components/media.yaml#/ImageCategoryList"
+    "ImageCategoryRequest":
+      "$ref": "./components/media.yaml#/ImageCategoryRequest"
+    "ImageUpdateRequest":
+      "$ref": "./components/media.yaml#/ImageUpdateRequest"
+    "ImageTenantOption":
+      "$ref": "./components/media.yaml#/ImageTenantOption"
+    "ImageTenantOptionList":
+      "$ref": "./components/media.yaml#/ImageTenantOptionList"
+    "MiniappLoginRequest":
+      "$ref": "./components/user.yaml#/MiniappLoginRequest"
+    "MiniappUser":
+      "$ref": "./components/user.yaml#/MiniappUser"
+    "MiniappTenant":
+      "$ref": "./components/user.yaml#/MiniappTenant"
+    "MiniappSession":
+      "$ref": "./components/user.yaml#/MiniappSession"
+    "MiniappCurrentSession":
+      "$ref": "./components/user.yaml#/MiniappCurrentSession"
+    "PlatformUser":
+      "$ref": "./components/user.yaml#/PlatformUser"
+    "PlatformUserPage":
+      "$ref": "./components/user.yaml#/PlatformUserPage"
+    "TenantUser":
+      "$ref": "./components/user.yaml#/TenantUser"
+    "TenantUserPage":
+      "$ref": "./components/user.yaml#/TenantUserPage"
+    "UserTenant":
+      "$ref": "./components/user.yaml#/UserTenant"
+    "UserTenantList":
+      "$ref": "./components/user.yaml#/UserTenantList"
+    "TenantOption":
+      "$ref": "./components/user.yaml#/TenantOption"
+    "TenantOptionList":
+      "$ref": "./components/user.yaml#/TenantOptionList"
+    "MiniappSettings":
+      "$ref": "./components/user.yaml#/MiniappSettings"
+    "MiniappSettingsRequest":
+      "$ref": "./components/user.yaml#/MiniappSettingsRequest"

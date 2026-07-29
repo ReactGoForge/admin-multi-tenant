@@ -1,0 +1,202 @@
+"BasicSettings":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "iconImageId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "iconUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+  "required":
+    - "name"
+    - "iconImageId"
+    - "iconUrl"
+"BasicSettingsRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "iconImageId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+  "required":
+    - "name"
+"PlatformBrand":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "iconUrl":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+  "required":
+    - "name"
+    - "iconUrl"
+"ImageAsset":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "tenantId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "tenantName":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "categoryId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "categoryName":
+      "anyOf":
+        -
+          "type": "string"
+        -
+          "type": "null"
+    "originalName":
+      "type": "string"
+    "mimeType":
+      "type": "string"
+    "sizeBytes":
+      "type": "integer"
+      "minimum": 0
+    "previewUrl":
+      "type": "string"
+    "createdAt":
+      "type": "string"
+      "description": "服务端时间字符串"
+  "required":
+    - "id"
+    - "tenantId"
+    - "tenantName"
+    - "categoryId"
+    - "categoryName"
+    - "originalName"
+    - "mimeType"
+    - "sizeBytes"
+    - "previewUrl"
+    - "createdAt"
+"ImagePage":
+  "type": "object"
+  "properties":
+    "items":
+      "type": "array"
+      "items":
+        "$ref": "../openapi.yaml#/components/schemas/ImageAsset"
+    "page":
+      "type": "integer"
+      "minimum": 1
+    "pageSize":
+      "type": "integer"
+      "minimum": 1
+      "maximum": 100
+    "total":
+      "type": "integer"
+      "minimum": 0
+  "required":
+    - "items"
+    - "page"
+    - "pageSize"
+    - "total"
+"ImageCategory":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "tenantId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+    "name":
+      "type": "string"
+    "isShared":
+      "type": "boolean"
+  "required":
+    - "id"
+    - "tenantId"
+    - "name"
+    - "isShared"
+"ImageCategoryList":
+  "type": "array"
+  "items":
+    "$ref": "../openapi.yaml#/components/schemas/ImageCategory"
+"ImageCategoryRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+  "required":
+    - "name"
+"ImageUpdateRequest":
+  "type": "object"
+  "properties":
+    "name":
+      "type": "string"
+    "categoryId":
+      "anyOf":
+        -
+          "type": "string"
+          "pattern": "^[1-9][0-9]*$"
+          "description": "BIGINT 标识以字符串传输"
+        -
+          "type": "null"
+"ImageTenantOption":
+  "type": "object"
+  "properties":
+    "id":
+      "type": "string"
+      "pattern": "^[1-9][0-9]*$"
+      "description": "BIGINT 标识以字符串传输"
+    "name":
+      "type": "string"
+    "status":
+      "type": "string"
+      "enum":
+        - "enabled"
+        - "disabled"
+  "required":
+    - "id"
+    - "name"
+    - "status"
+"ImageTenantOptionList":
+  "type": "array"
+  "items":
+    "$ref": "../openapi.yaml#/components/schemas/ImageTenantOption"
